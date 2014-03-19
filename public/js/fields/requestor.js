@@ -38,7 +38,7 @@ $(document).ready(function () {
 					
 					if(data['noResult'] == null){
 						$(data).each(function(index) {
-							$(".ownerAutoComplete ul").append("<li class=\"name\" style=\" cursor:pointer\" onclick=\"document.getElementById('requestor').value='"+data[index].id+"'; document.getElementById('owner').value = '" + data[index].name+ "';\">"+BoldSearchTerm(data[index].name, data[index].name)+"</li>");
+							$(".ownerAutoComplete ul").append("<li class=\"name\" style=\" cursor:pointer\" onclick=\"document.getElementById('requestor').value='"+data[index].id+"'; document.getElementById('owner').value = '" + data[index].name+ "';\">"+BoldSearchTerm(data[index].name, data[index].name) + " " + data[index].street +"</li>");
 						});
 					} else {
 						$(".ownerAutoComplete ul").append("<li class=\"name\">Search word '"+data+"' - did not match any movies. </li>");
