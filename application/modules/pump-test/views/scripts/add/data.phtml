@@ -1,0 +1,80 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add Pump Test Data For Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'pump-test-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Test Infromation was saved. Next add the Flow Data.</p>
+               </div>
+			<?php }?>
+			
+			<div class="grid_9 pad_4"><b>Test Requirements:</b> <?php echo (!empty($this->pumpTest->requirements) ? $this->pumpTest->requirements : 'No Data' );?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_5 pad_4"><b>Location:</b> <?php echo $this->location->street;?> <?php echo $this->location->city;?>, <?php echo $this->location->state;?> <?php echo $this->location->zip;?></div>
+			<div class="grid_2 pad_4"><b>Source:</b> <?php echo (!empty($this->pumpTest->source) ? $this->pumpTest->source : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Depth:</b> <?php echo (!empty($this->pumpTest->depth) ? $this->pumpTest->depth .' feet' : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Diameter:</b> <?php echo $this->pumpTest->diameter;?> inches</div>
+			<div class="clear"></div>
+			
+			<div class="grid_8 pad_4"><b>Equipment Used:</b> <?php echo (!empty($this->pumpTest->equipment) ? $this->pumpTest->equipment : 'No Data' );?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Pumping Level:</b> <?php echo (!empty($this->pumpTest->level) ? $this->pumpTest->level . ' feet' : 'No Data');?> <br /></div>			
+			<div class="grid_2 pad_4"><b>Vent:</b>  <?php echo (!empty($this->pumpTest->vent) ? $this->pumpTest->vent : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Seal:</b> <?php echo (!empty($this->pumpTest->seal) ? $this->pumpTest->seal : 'No Data');?></div>
+			<div class="grid_3 pad_4"><b>Pop Off Valve:</b> <?php echo (!empty($this->pumpTest->pop_off_valve) ? $this->pumpTest->pop_off_valve : 'No Data');?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Water Color:</b> <?php echo (!empty($this->pumpTest->color) ? $this->pumpTest->color : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Taste:</b> <?php echo (!empty($this->pumpTest->taste) ? $this->pumpTest->taste : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Odor:</b> <?php echo (!empty($this->pumpTest->odor) ? $this->pumpTest->odor : 'No Data');?></div>
+			<div class="grid_3 pad_4"><b>Test Date:</b> <?php echo date("m/d/Y",$this->pumpTest->date);?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Conducted By:</b>  <?php echo $this->pumpTest->first_name;?> <?php echo $this->pumpTest->last_name?></div>
+			<div class="grid_6 pad_4"><b>Requested By:</b>  <?php echo $this->pumpTest->name;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_8 pad_4"><b>Remarks:</b> <?php echo (!empty($this->pumpTest->remarks) ? $this->pumpTest->remarks : 'No Data');?></div>
+			<div class="clear"></div>
+			<br />
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>Please correct the highlighted fields.</p>
+                </div>
+            <?php }?>
+			<form method="post" action="">
+			<?php $count = 0;?>
+			<?php for($i=$this->startTime*60; $i<=$this->endTime*60; $i+=15) {?>
+				<?php $hour = floor($i/60); 
+					  $min = ($i/60-floor($i/60))*60;
+					  $time = mktime($hour,$min,0,date("m"),date("d"),date("Y"));
+				?>
+			
+				<div class="grid_2 pad_4"><?php echo date("H:i A", $time);?>
+					<input type="hidden" name="time<?php echo $count;?>" id="time<?php echo $count;?>" value="<?php echo date("h:i A", $time);?>" />
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('flow'.$count)?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('static'.$count)?></div>
+				<div class="clear"></div>
+				<?php $count++;?>
+			<?php }?>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

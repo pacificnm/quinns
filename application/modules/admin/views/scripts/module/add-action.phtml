@@ -1,0 +1,14 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Add Action to <?echo ucfirst($this->module->name);?>_<?php echo ucfirst($this->controller->name);?>Controller</h2>
+		<div class="block">	
+			<?php echo $this->form;?>
+			<div class="buttons">
+				<a href="/admin/index/" class="button left" title="Admin Home"><span class="icon icon108"></span></a>
+				<a href="/admin/module" class="button left" title="Module Home"><span class="icon icon53"></span></a>
+				<a href="/admin/module/controller/id/<?php echo $this->controller->controller_id?>" class="button left" title="Back"><span class="icon icon8"></span></a>
+			</div>
+		</div>
+	</div>
+</div>

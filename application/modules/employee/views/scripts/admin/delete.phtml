@@ -1,0 +1,13 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Delete Employee <?php echo $this->employee->first_name;?> <?php echo $this->employee->last_name;?></h2>
+		<div class="block">
+			<div class="message warning">
+                	<h5>Warning!</h5>
+                    <p>Are you sure you want to delete Emaployee <?php echo $this->employee->first_name;?> <?php echo $this->employee->last_name;?> This can not be undone.</p>
+                    
+			<?php echo $this->form;?>
+		</div>
+	</div>
+</div>

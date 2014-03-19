@@ -1,0 +1,254 @@
+
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+	<h2>View Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'location-edit') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Location information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'location-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The new Location was successfully created.</p>
+               </div>
+			<?php }?>
+			
+			<?php if($this->msg == 'schedule-edit') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Next Scheduled Service Date was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'delete-service') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Service was removed.</p>
+               </div>
+			<?php }?>
+			<?php if(count($this->owners) < 1) {?>
+				<div class="message warning">
+                	<h5>Warning!</h5>
+                    <p>This Location has no owner assigned. Please add the Owners information.</p>
+               </div>
+			<?php }?>
+				<div class="grid_6 pad_4">
+					<h6>Location Details</h6>
+					<div class="grid_3 pad_4"><b>Street:</b> <?php echo $this->location->street;?></div>
+					<div class="grid_2 pad_4"><b>City:</b> <?php echo $this->location->city;?></div>
+					<div class="clear"></div>
+					
+					<div class="grid_3 pad_4"><b>Street2:</b> <?php echo $this->location->street2;?></div>
+					<div class="grid_2 pad_4"><b>State:</b> <?php echo $this->location->state;?></div>
+					<div class="clear"></div>
+						
+					<div class="grid_3 pad_4"><b>Updated:</b> <?php echo date("m/d/Y H:s",strtotime($this->location->update));?></div>	
+					<div class="grid_2 pad_4"><b>Zip:</b> <?php echo $this->location->zip;?></div>
+					<div class="clear"></div>			
+				</div>
+				
+				<div class="grid_6 pad_4">
+					<h6>Owner Details</h6>
+				<?php if(count($this->owners) < 1) {?>
+					<div class="grid_5 pad_4">
+						<a href="/owner/add/index/id/<?php echo $this->location->id;?>" title="">Add Owner</a>
+					</div> 
+					<div class="clear"></div>
+				<?php } else {?>
+					<?php foreach($this->owners as $owners) { ?>
+					<div class="grid_5 pad_4">
+							<a href="/owner/view/index/id/<?php echo $owners->owner_id;?>" <?php if($owners->status == 0){ echo 'style="color:red"';}?>><?php echo $owners->name;?></a> <?php echo $owners->phone?>
+						
+						</div> 
+					<div class="clear"></div>
+					<?php }?>
+				<?php }?>
+					<div class="grid_3 pad_4"><b>Service Date:</b> 
+						<?php if(!empty($this->schedule)) { ?>
+						<a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Edit Service Date"><?php if($this->schedule->service_due < time()) {echo '<span style="color:red">';} ?><?php echo date("m/d/Y", $this->schedule->service_due);?><?php if($this->schedule->service_due < time()) { echo '</span>';} ?></a>
+						<?php } else { ?>
+							<br><a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Create Service Date">Create Service Date</a>
+						<?php }?>
+					</div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="buttons">
+					<a href="/location/edit/index/id/<?php echo $this->location->id;?>" class="button left" title="Edit Location"><span class="icon icon145"></span></a>
+					<?php if($this->pumpTestCount > 0){?>
+						<a href="/pump-test/view/index/id/<?php echo $this->pumpTest->id;?>" class="button middle" title="View Pump Test"><span class="icon icon138"></span><span class="label">Pump Test</span></a>
+					<?php }?>
+					<a href="/pump-test/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="Add Pump Test"><span class="icon icon138"></span><span class="label">New Pump Test</span></a>
+					<a href="/service/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="Add New Service"><span class="icon icon167"></span><span class="label">New Service</span></a>
+					<a href="/location/view/note/id/<?php echo $this->location->id;?>" class="button middle" title="Location Notes"><span class="icon icon137"></span><span class="label">Notes</span></a>
+					<a href="/location/view/map/id/<?php echo $this->location->id;?>" class="button middle" title="Location Map"><span class="icon icon197"></span><span class="label">Map</span></a>
+					<?php if($this->location->old_id > 0) {?>
+					   <a href="/location/view/old/id/<?php echo $this->location->old_id;?>" class="button middle" title="Referance" target="new"><span class="icon icon43"></span></a>
+					
+					<?php }?>
+					<a href="/location/view/report/id/<?php echo $this->location->id;?>" class="button right" title="Print Location Report"><span class="icon icon153"></span><span class="label">Print Report</span></a>
+				</div>		
+		</div>
+	</div>
+
+	<div class="box round  fullpage">
+		<h2>Pumps</h2>
+		<div class="block">
+			<table class="data display ">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Pump</th>
+						<th>Type</th>
+						<th>Voltage</th>
+						<th>Phase</th>
+						<th>Wire</th>
+						<th>Pipe</th>
+						<th>Pipe Size</th>
+						<th>Well Depth</th>
+						<th>Pump Depth</th>
+						<th></th>
+					</tr>	
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->pumps as $pump) { ?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $pump->id;?></td>
+						<td><a href="/pump/view/index/id/<?php echo $pump->id;?>" title="View Pump Details"><?php echo $pump->pump_model;?></a></td>
+						<td><?php echo $pump->pump_type;?></td>
+						<td><?php echo $pump->voltage;?></td>
+						<td><?php echo $pump->phase;?></td>
+						<td><?php echo $pump->wire;?></td>
+						<td><?php echo $pump->pipe;?></td>
+						<td><?php echo $pump->pipe_size;?></td>
+						<td><?php echo $pump->well_depth;?></td>
+						<td><?php echo $pump->pump_depth;?></td>
+						<td>
+							<a style="float:right" href="/pump/edit/index/id/<?php echo $pump->id;?>" class="button left" title="Edit Pump"><span class="icon icon145"></span></a>
+							<?php if($pump->pump_test_id > 0) {?>
+								<a style="float:right" href="/pump-test/view/index/id/<?php echo $pump->id;?>" class="button left" title="View Pump Tests"><span class="icon icon138"></span></a>
+							<?php }?>
+							<br />
+						</td>
+					</tr>
+				<?php $i++; ?>
+				<?php }?>
+				</tbody>
+			</table>
+			<br />
+			<div class="clear"></div>
+			<div class="buttons">
+				<a href="/pump/add/index/id/<?php echo $this->location->id?>" class="button left" title="Add New Pump"><span class="icon icon52"></span><span class="label">Add Pump</span></a>
+			</div>					
+		</div>
+	</div>
+
+	<div class="box round  fullpage">
+		<h2>Service Records</h2>
+		<div class="block">
+			<table class="data display ">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Description</th>
+						<th>Technician</th>
+						<th>Status</th>
+						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->services as $service) { ?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+					
+					<td><a href="/service/view/index/id/<?php echo $service->id;?>"><?php echo date("m/d/Y",$service->date);?></a></td>
+					<td><?php if($service->status == 'Open') { ?>
+					   <?php echo $this->truncate($service->complaint,50);?>
+					   <?php } else {?>
+					       <?php echo $this->truncate($service->description,50);?>
+					   <?php } ?>
+					   </td>
+					   <td>
+					   		<?php if($service->employee > 0 ) { ?>
+					   			<?php echo $service->first_name?> <?php echo $service->last_name?>
+					   		<?php } else { ?>
+					   			Unknown
+					   		<?php }?>
+					   </td>
+					   <td><?php echo $service->status?></td>
+					   
+					<td>
+						<div class="buttons">
+							<a style="float:right" href="/service/edit/index/id/<?php echo $service->id?>" class="button left" title="Edit Service"><span class="icon icon145"></span></a>
+							<a style="float:right" href="/service/view/report/id/<?php echo $service->id?>" class="button left" title="Print Service Report"><span class="icon icon153"></span></a>
+				
+							
+						</div>
+					</td>
+				</tr>
+				<?php $i++; ?>
+				<?php }?>
+				</tbody>
+			</table>
+			<br />
+			<div class="clear"></div>
+			<div class="buttons">
+				<a href="/service/add/index/id/<?php echo $this->location->id;?>" class="button left" title="Add New Service"><span class="icon icon167"></span><span class="label">New Service</span></a>
+				<div style="float:right">
+					<?php echo $this->paginationControl($this->services , 'Sliding', 'controls.phtml');?>
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+		</div>
+		
+	</div>
+	
+	<div class="box round  fullpage">
+		
+		<h2>Nearby Locations</h2>
+		
+		<div class="block">
+		<?php if(!empty($this->nearbyWells)) {?>
+			<table class="data display ">
+				<thead>
+					<tr>
+						<th>Location</th>
+						<th>Distance</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->nearbyWells as $well) {?>
+				<?php if($well['id'] != $this->location->id) {?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+					<td><a href="/location/view/index/id/<?php echo $well['id']?>"><?php echo $well['street'];?><?php ?> <?php echo $well['city'];?>, <?php echo $well['state'];?> <?php echo $well['zip']?></a></td>
+					<td><?php echo $well['search_distance'];?></td>
+				</tr>
+				<?php $i++; ?>
+				<?php }?>
+				<?php }?>
+				</tbody>
+			</table>
+			<?php } else {?>
+				<div class="message warning">
+    				<h6>Warning!</h6>
+    				<p>There is no PLSS or Lat/Lng data to provide nearby wells. Please <a href="/location/view/map/id/<?php echo $this->location->id;?>">update this location</a> and provide the needed information</p>
+    			</div>
+			<?php }?>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="grid_3">
+
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

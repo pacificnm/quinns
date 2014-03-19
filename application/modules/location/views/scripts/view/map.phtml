@@ -1,0 +1,75 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+		<h2>Map For Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'add-map') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>Map infromation was Added.</p>
+               </div>
+			<?php }?>
+		
+			<?php if(!empty($this->geo)) {?>
+			<div class="grid_6">
+				<?php echo $this->location->street?> <?php echo $this->location->city;?> <?php echo $this->location->state;?> <?php echo $this->location->zip;?>
+			</div>
+			<div class="clear"></div>	
+			
+			<div class="grid_3">
+				<b>PLSS:</b> 
+				<?php if(!empty($this->location->township)) {?>
+					<?php echo $this->location->township;?> <?php echo $this->location->township_char;?> <?php echo $this->location->range;?> <?php echo $this->location->range_char;?> <?php echo $this->location->sctn;?> <?php echo $this->location->division;?>
+				<?php } else {?>
+					<span style="color:red;">No PLSS Data!</span>
+				<?php }?>
+			</div>
+			<div class="grid_3">
+				<b>Tax Lot:</b> <?php if(!empty($this->geo->tax_lot)) { echo $this->geo->tax_lot;} else { echo 'No Data';}?>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="grid_3">
+				<b>Lat:</b> <?php echo $this->location->lat;?>
+			</div>
+			<div class="grid_3">
+				<b>Lon:</b>  <?php echo $this->location->lng;?>
+			</div>
+			<div class="clear"></div>
+			<br />
+			
+			<?php } else {?>
+			<br />
+			<div class="message warning">
+            	<h5>Warning!</h5>
+                <p> No GEO data to look up. Please add either PLSS or LAT/LON data.</p>
+            </div>
+			<div class="clear"></div>
+			<br />
+			<?php }?>
+			
+			
+			<div class="grid_13">
+				<?php if(!empty($this->geo)) {?>
+					<h6>Driving Directions</h6>
+					<?php echo $this->geo->directions; ?>
+				<?php } else { ?>
+					<a href="/location/add/map/id/<?php echo $this->location->id;?>" class="button middle" title="Use Google to find information"><span class="icon icon197"></span><span class="label">Look up Using Google</span></a>
+				<?php }?>
+			</div>
+			<div class="clear"></div>
+			
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+					
+			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

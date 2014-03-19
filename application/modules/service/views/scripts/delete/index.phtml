@@ -1,0 +1,44 @@
+<script src="/js/fields/owner.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Delete Service <?php echo $this->service->id;?> From Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<div class="message warning">
+                	<h5>Warning!</h5>
+                <p>Are you sure you want to delete Service Record <?php echo $this->service->id;?><br /><br />
+                <b>Complaint:</b><br />
+                <?php echo $this->service->complaint;?><br />
+                <b>Description:</b>
+                <?php echo $this->service->description;?><br />
+            	</p>
+            </div>
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post" action="">
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

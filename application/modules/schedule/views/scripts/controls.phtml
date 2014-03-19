@@ -1,0 +1,26 @@
+<?php if ($this->pageCount): ?>
+<div class="buttons">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->url(array('page' => $this->previous)); ?>" class="button left" title="Previous"><span class="icon icon8"></span></a>
+<?php else: ?>
+  <!--  <span class="disabled">&lt; Previous</span> |-->
+<?php endif; ?>
+ 
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <a href="<?php echo $this->url(array('page' => $page)); ?>" class="button middle"><span class="label"><?php echo $page; ?></span></a>
+  <?php else: ?>
+  	<a href="#" class="button middle"><span class="label"><?php echo $page; ?></span></a>
+  <?php endif; ?>
+<?php endforeach; ?>
+ 
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+<a href="<?php echo $this->url(array('page' => $this->next)); ?>" class="button right" title="Next"><span class="icon icon9"></span></a>
+<?php else: ?>
+  <!-- <span class="disabled">Next &gt;</span>  -->
+<?php endif; ?>
+</div>
+<?php endif; ?>

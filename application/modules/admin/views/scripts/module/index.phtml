@@ -1,0 +1,40 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Modules</h2>
+		<div class="block" id="articles">		
+			<table class="data display">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $i = 0;?>
+					<?php foreach($this->modules as $module) {?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $module->module_id;?></td>
+						<td><a href="/admin/module/view/id/<?php echo $module->module_id;?>"><?php echo $module->name;?></a></td>
+						<td><?php if($module->status == 1) echo 'Enabled'; else echo 'Disabled';?></td>
+						<td>
+							<a style="float:right" href="/admin/module/edit-module/module/<?php echo $module->module_id;?>" class="button left" title="Edit Module"><span class="icon icon145"></span></a>
+							<a style="float:right" href="/admin/module/disable-module/module/<?php echo $module->module_id;?>" class="button left" title="Disable Module"><span class="icon icon58"></span></a><br />
+						
+						</td>
+					</tr>
+					<?php $i++; ?>
+					<?php }?>
+				</tbody>
+			</table>
+			<div class="clear"></div>
+			<div class="buttons">
+				<a href="/admin/index/" class="button left" title="Admin Home"><span class="icon icon108"></span></a>
+				<a  href="/admin/module/add-module/" class="button left" title="Add module"><span class="icon icon3"></span></a><br />
+				
+			</div>
+		</div>
+	</div>
+</div>

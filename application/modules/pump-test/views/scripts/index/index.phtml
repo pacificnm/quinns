@@ -1,0 +1,25 @@
+<?php echo $this->MainNav();?>
+	<div class="grid_13">
+		<div class="box round first fullpage">
+			<h2>Pump Tests</h2>
+			<div class="block">
+				<div class="SearchPanel">
+				<form action="/location/search/search" class="searchForm" accept-charset="utf-8" method="post">				
+					<b>Location:</b>
+					<input type="text" name="Keywords" id="keywords" value="" class="medium" maxlength="300" tabindex="1" autocomplete="off" /><br />
+					<div class="autoComplete"><ul></ul></div>
+					<div class="ajax-loader"></div>
+					<div class="std-btn"><input type="submit" name="search" value="Search" class="btn btn-teal"/></div>
+					<br />
+					<p>Enter a location to view the Pump Test</p>
+				</form>
+			</div>
+			<div class="clear"></div>			
+			</div>
+		</div>
+	</div>
+<div class="grid_3">
+
+<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

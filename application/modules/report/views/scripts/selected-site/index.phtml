@@ -1,0 +1,86 @@
+<script src="/js/toolTip.js" type="text/javascript"></script>
+<script src="/js/fields/selectedSites.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Selected Sites Report</h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php }?>
+			<form method="post" action="">
+				<h6>Prepaired For</h6>
+				<div class="grid_5 pad_4"><?php echo $this->form->getElement('name');?>
+					<div class="ownerAutoComplete auto"><ul></ul></div>
+				</div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('phone');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('email');?></div>
+				<div class="clear"></div>
+				<div class="grid_6 pad_4"><?php echo $this->form->getElement('owner_street');?></div>
+				<div class="clear"></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('owner_city');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('owner_state');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('owner_zip');?>
+					<input type="hidden" name="owner_id" id="owner_id" />
+				</div>
+				<div class="clear"></div>
+				<br />
+				
+				<h6>Search By LAT and LNG</h6>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('latitude')?>
+				</div>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('longitude')?>
+				</div>
+				<div class="clear"></div>
+				<br />
+				
+				<h6>Search By PLSS System</h6>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('township');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('township_char');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('range');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('range_char');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('sctn');?></div>
+				<div class="grid_2 pad_4" onMouseover="ddrivetip('Seperate section divisions using a comma. Example: NE,SW','', 300)"; onMouseout="hideddrivetip()"><?php echo $this->form->getElement('sctn_division');?>
+				
+				</div>
+				<div class="clear"></div>
+				<br />
+				
+				<h6>Search By Street Address</h6>
+				<div class="grid_6 pad_4"><?php echo $this->form->getElement('street');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('city');?></div>
+				<div class="clear"></div>
+				<br />
+				
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('records');?></div>
+				<div class="clear"></div>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+				<br />
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,48 @@
+<script src="/js/fields/owner.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Edit Pump Test at Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post" action="">
+				<?php foreach($this->pumpFlow as $flow) {?>
+					<div class="grid_2 pad_4"><?php echo $flow->time;?></div>
+					<div class="grid_2 pad_4"><?php echo $this->form->getElement('flow'.$flow->id)?></div>
+					<div class="grid_2 pad_4"><?php echo $this->form->getElement('static'.$flow->id)?></div>
+					<div class="clear"></div>
+				<?php }?>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			
+			<div class="clear"></div>
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+			</div>
+			<div class="clear"></div>	
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

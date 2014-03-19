@@ -1,0 +1,71 @@
+<script src="/js/fields/city.js" type="text/javascript"></script>
+<script src="/js/fields/state.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add New Owner</h2>
+		<div class="block">
+			<?php if($this->msg == 'location-add') {?>
+				<div class="message info">
+                	<h5>New Location Added!</h5>
+                    <p>The Location <?php echo $this->location->street;?> was added. Next add the Owners information.</p>
+                </div>
+			
+			<?php }?>
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			
+			<?php if(!empty($this->wellLog)) {?>
+				<div class="message warning">
+                	<h5>Information!</h5>
+                    <p>Found a State Well Log with the address <?php echo $this->wellLog->street_of_well;?>. Using Data from this log.</p>
+                </div>
+			<?php }?>
+			<form method="post" action="">
+				<div class="grid_6 pad_4"><?php echo $this->form->getElement('name');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('phone');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('email');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_8 pad_4"><?php echo $this->form->getElement('street');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_8 pad_4"><?php echo $this->form->getElement('street2');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('city');?>
+					<div class="pump">
+						<div class="cityAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('state');?>
+					<div class="pump">
+						<div class="stateAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('zip');?></div>				
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			<br />
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<script src="/js/fields/owner.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Delete Pump Test at Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post" action="">
+			
+			</form>
+		</div>
+	</div>
+</div>

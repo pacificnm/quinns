@@ -1,0 +1,28 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+	<h2>View Location Referance</h2>
+		<div class="block">
+		  <p>Original Database record for ID <?php echo $this->id?></p>
+		  <table class="data display ">
+		      <thead>
+		          <tr>
+    		          <th>Column</th>
+    		          <th>Data</th>
+    		      </tr>
+		      </thead>
+		      <tbody>
+		          <?php $i = 0;?>
+		          <?php foreach($this->welldata as $column => $data) { ?>
+		              <?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+		                  <td><?php echo $column;?></td>
+		                  <td><?php echo $data;?></td>
+		              </tr>
+		              <?php $i++; ?>
+		          <?php } ?>
+		      </tbody>
+		  </table>
+		</div>
+    </div>
+<?php ?>

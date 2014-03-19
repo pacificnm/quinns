@@ -1,0 +1,57 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Pipe Type List</h2>
+		<div class="block">
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pipe Type was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'add-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pipe Type was Successfuly added.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'delete-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pipe Type was Successfuly deleted.</p>
+               </div>
+			<?php }?>
+				 <table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Value</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $i = 0;?>
+					<?php foreach($this->pipeTypes as $pipeType) { ?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $pipeType->id;?></td>
+						<td><?php echo $pipeType->value;?></td>
+						<td>
+							<a style="float:right" href="/pipe/admin/edit/id/<?php echo $pipeType->id;?>" class="button left" title="Edit Pipe Type"><span class="icon icon145"></span></a>
+							<a style="float:right" href="/pipe/admin/delete/id/<?php echo $pipeType->id;?>" class="button left" title="Delete Pipe Type"><span class="icon icon58"></span></a>
+							<br />
+						</td>
+					</tr>
+					<?php $i++; ?>
+					<?php }?>
+					
+					</tbody>
+				</table>
+			<div class="buttons">
+				<a href="/admin/list/index" class="button left" title="Back to Admin Lists"><span class="icon icon120"></span></a>
+				<a href="/pipe/admin/add" class="button middle" title="Add Pipe Type"><span class="icon icon3"></span></a>
+				
+				<?php echo $this->paginationControl($this->pipeTypes,'Sliding', 'controls.phtml'); ?>
+			</div>
+		</div>
+	</div>
+</div>

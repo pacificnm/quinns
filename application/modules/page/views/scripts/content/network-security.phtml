@@ -1,0 +1,36 @@
+<?php if($this->auth()->hasIdentity()) {?>
+	<?php $param = $this->auth()->getIdentity();?>
+		<?php echo $this->MainNav();?>
+<?php } ?>
+<?php echo $this->breadcrumb($this->breadcrumb);?>
+<div class="clear"></div>
+<div class="grid_16">
+	<div class="box round first fullpage">
+		<h2>Network Security and Firewalls</h2>
+		<img src="/images/IT-Security.png" alt="Network Security" class="left" />
+		 <div class="block">
+			
+			<p class="start">
+				Keeping your network safe from outside threats is one of the most important IT 
+				Security concerns we should think about. We have partnered with one of the leaders in 
+				Network Security Appliances to bring you best in class hardware security solutions. 
+				eSoft is a leading provider of advanced unified threat management (UTM) appliances and 
+				network security software products. eSoft delivers innovative and flexible network 
+				security with world-class management and control giving customers the ultimate choice 
+				of high-end network security products. Innovative Support Services can provide you with an IT Security plan that
+				will suit your particular business. Hardware firewalls will give you protection beyond a 
+				regular “home” use router/firewall. Not only will this protect you from outside threats 
+				but it will also give you secure access into your network when you are not physically at 
+				your office.
+			</p>
+			
+			<p>Planning the right IT Security solution to protect your business is critical. 
+				We are experienced in implementing a thorough IT Security policy that will 
+				protect not only traffic traveling in and out of your network but also safeguarding 
+				your data physically stored onto your disks. After familiarizing ourselves with your 
+				environment, and what your availability and security requirements are, we can propose 
+				the right IT Security solution for your business. Schedule a free site IT Security 
+				assessment today!</p>
+		</div>
+	</div>
+</div>

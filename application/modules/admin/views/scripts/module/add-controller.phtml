@@ -1,0 +1,13 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Add Controller To Module <?php echo $this->module->name;?></h2>
+		<div class="block">	
+			<?php echo $this->form;?>
+			<div class="buttons">
+				<a href="/admin/module" class="button left" title="Module Home"><span class="icon icon53"></span></a>
+				<a href="/admin/module/view/id/<?php echo $this->module->module_id?>" class="button left" title="Controllers"><span class="icon icon8"></span></a>
+			</div>
+		</div>
+	</div>
+</div>

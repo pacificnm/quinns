@@ -1,0 +1,66 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Edit Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<?php if($this->save) {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Location Information was saved.</p>
+                </div>
+			<?php }?>
+			<form method="post" action="">
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('street');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('street2');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('city');?>
+					<div class="pump">
+						<div class="cityAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('state');?>
+					<div class="pump">
+						<div class="stateAutoComplete auto"><ul></ul></div>
+					</div>
+				
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('zip');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			
+			<br />
+			
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+			</div>		
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,60 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add New Employee</h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post" action="">
+				<div class="grid_5 pad_4"><?php echo $this->form->getElement('first_name');?></div>
+				<div class="grid_5 pad_4"><?php echo $this->form->getElement('last_name');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_5 pad_4"><?php echo $this->form->getElement('email');?></div>
+				<div class="grid_5 pad_4"><?php echo $this->form->getElement('job_title');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('work_phone');?></div>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('mobile_phone');?></div>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('home_phone');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('address');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('im');?></div>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('vehicle');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('status');?></div>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('password');?></div>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('acl');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			
+			<br />
+			<div class="buttons">
+				<a href="/employee/admin/index" class="button left" title="Back to Employee Lists"><span class="icon icon120"></span></a>
+				</div>
+		</div>
+	</div>
+</div>

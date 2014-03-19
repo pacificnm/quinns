@@ -1,0 +1,78 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>View Service on <?php echo date("m/d/Y", $this->service->date);?> at Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			
+			<?php if($this->msg == 'service-edit') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Service Information was saved.</p>
+                </div>
+            <?php }?>
+            <?php if($this->msg == 'service-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The new Service record was saved.</p>
+                </div>
+            <?php }?>
+		
+			<div class="grid_4 pad_4"><b>Service Date:</b> <?php echo date("m/d/Y", $this->service->date);?></div>
+			<div class="grid_3 pad_4"><b>Start Time:</b> <?php echo date("H:i:s A", $this->service->start_time);?></div>
+			<div class="grid_3 pad_4"><b>End Time:</b> <?php echo date("H:i:s A", $this->service->end_time);?></div>
+			
+			
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Status:</b> <?php echo $this->service->status == 'Closed' ? '<span style="color:red;">'.$this->service->status.'</span>' : '<span style="color:green;">'.$this->service->status.'</span>';?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Requested By:</b> <?php if(!empty($this->service->name)){ echo 'Unknown'; } else { echo $this->service->name;}?></div>
+			<div class="grid_4 pad_4"><b>Service Tech:</b> <?php echo $this->service->first_name;?> <?php echo $this->service->last_name;?></div>
+			<div class="grid_4 pad_4"><b>Created By:</b> <?php echo $this->service->create_first;?> <?php echo $this->service->create_last;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Pump:</b> <?php echo $this->service->pump == 0 ? 'Unknown' : $this->service->pump_model;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_10 pad_4"><b>Complaint:</b> <br /><?php echo $this->service->complaint;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_10 pad_4"><br /></div>
+			<div class="clear"></div>
+			
+			<div class="grid_10 pad_4"><b>Description Of Service:</b> <br /><?php echo $this->service->description;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_10 pad_4"><br /></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Include Driving Directions:</b> <?php echo $this->service->directions == 1 ? 'Yes' : 'No';?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Include Flow Test:</b> <?php echo $this->service->flow_test == 1 ? 'Yes':'No';?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Last Update:</b> <?php echo $this->service->update;?></div>
+			<div class="clear"></div>
+			
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/service/edit/index/id/<?php echo $this->service->id?>" class="button middle" title="Edit Service"><span class="icon icon145"></span></a>
+				<a href="/service/delete/index/id/<?php echo $this->service->id?>" class="button middle" title="Delete Service"><span class="icon icon58"></span></a>
+				<a href="/service/view/report/id/<?php echo $this->service->id?>" class="button middle" title="Print Service Report"><span class="icon icon153"></span><span class="label">Print</span></a>
+				<a href="/service/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="Add New Service"><span class="icon icon167"></span><span class="label">New Service</span></a>
+				<?php if($this->service->old_id > 0) {?>
+					   <a href="/service/view/old/id/<?php echo $this->service->old_id;?>" class="button right" title="Referance" target="new"><span class="icon icon43"></span></a>
+					
+			 <?php }?>		
+			</div>
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

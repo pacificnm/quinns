@@ -1,0 +1,43 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+		<h2>View Notes For Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'note-edit') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Note information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<div class="grid_10 pad_4"><b>Directions:</b> <?php echo $this->note->directions?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_10 pad_4"><b>Note:</b> <?php echo $this->note->note?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Access:</b> <?php echo $this->note->access?></div>
+			<div class="grid_3 pad_4"><b>Boom Truck Needed:</b> <?php echo $this->note->boom_truck == 1 ? 'Yes' : 'No'; ?></div>
+			<div class="grid_3 pad_4"><b>Dog:</b> <?php echo $this->note->dog == 1 ? 'Yes' : 'No'; ?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Number Of Men Needed:</b> <?php echo $this->note->men;?></div>
+			<div class="grid_8 pad_4"><?php if(!empty($this->note->explanation)){?><b>Explanation:</b> <?php echo $this->note->explanation;?><?php }?></div>
+			<div class="clear"></div>
+			
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/location/edit/note/id/<?php echo $this->note->id;?>" class="button middle" title="Edit Note"><span class="icon icon145"></span></a>
+			</div>	
+		
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>
+	

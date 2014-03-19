@@ -1,0 +1,99 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+		<h2>View Owner <?php echo $this->owner->name;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'owner-edit') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Owner information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'location-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Location was added to this owner.</p>
+               </div>
+			<?php }?>
+		
+			<div class="grid_5 pad_4"><b>Name:</b> <?php echo $this->owner->name;?></div>
+			<div class="grid_3 pad_4"><b>Phone:</b> <?php echo $this->owner->phone;?></div>
+			<div class="grid_3 pad_4"><b>E-mail:</b> <?php echo $this->owner->email;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_6 pad_4"><b>Street:</b> <?php echo $this->owner->street;?></div>
+			<div class="clear"></div>
+			
+			<?php if(!empty($this->owner->street2)) {?>
+				<div class="grid_6 pad_4"><?php echo $this->owner->street2;?></div>
+				<div class="clear"></div>
+			<?php }?>
+			
+			<div class="grid_4 pad_4"><b>City:</b> <?php echo $this->owner->city;?></div>
+			<div class="grid_3 pad_4"><b>State:</b> <?php echo $this->owner->state;?></div>
+			<div class="grid_3 pad_4"><b>Zip Code:</b> <?php echo $this->owner->zip;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Status:</b> <?php echo $this->owner->status == 1 ? 'Active' : 'Inactive';?></div>
+			<div class="grid_4 pad_4"><b>Last Updated:</b> <?php echo $this->owner->update;?></div>
+			<div class="clear"></div>
+			<br />
+			
+			<div class="buttons">
+				<a href="/owner/edit/index/id/<?php echo $this->owner->id;?>" class="button left" title="Edit Owner"><span class="icon icon145"></span></a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="box round  fullpage">
+
+		<h2>Locations</h2>
+		<div class="block">
+			<table class="data display ">
+				<thead>
+					<tr>
+						<th>Street</th>
+						<th>City</th>
+						<th>State</th>
+						<th>Zip</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->location as $location) { ?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><a href="/location/view/index/id/<?php echo $location->location_id;?>" title="View Location"><?php echo $location->street;?></a></td>
+						<td><?php echo $location->city;?></td>
+						<td><?php echo $location->state;?></td>
+						<td><?php echo $location->zip;?></td>
+						<td><?php echo $location->status == 1 ? '<span style="color:green;">Active</span>' : '<span style="color:red;">Inactive</span>';?></td>
+						<td>
+							
+							<a style="float:right" href="/location/edit/index/id/<?php echo $location->location_id;?>" class="button left" title="Edit Location"><span class="icon icon145"></span></a>
+							<?php if($location->status == 1) {?>
+							<a style="float:right" href="/owner/edit/location/location/<?php echo $location->location_id;?>/owner/<?php echo $this->owner->id;?>/status/inactive" class="button middle" title="Set Inactive"><span class="icon icon58"></span></a>
+							<?php }else{ ?>
+								<a style="float:right" href="/owner/edit/location/location/<?php echo $location->location_id;?>/owner/<?php echo $this->owner->id;?>/status/active" class="button middle" title="Set Active"><span class="icon icon3"></span></a>						
+							<?php }?>
+							<br />
+						</td>
+					</tr>
+				<?php $i++; ?>
+				<?php }?>
+				</tbody>			
+			</table>
+			<br />
+			<div class="buttons">
+				<a href="/owner/add/location/id/<?php echo $this->owner->id;?>" class="button left" title="Add Location to Owner"><span class="icon icon52"></span><span class="label">Add Location</span></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

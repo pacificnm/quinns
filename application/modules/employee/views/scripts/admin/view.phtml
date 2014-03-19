@@ -1,0 +1,35 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>View Employee <?php echo $this->employee->first_name;?> <?php echo $this->employee->last_name;?></h2>
+		<div class="block">
+			<p class="meta">Last Sign In - <?php echo date('m/d/Y - H:m', $this->employee->last_signin)?> from <?php echo $this->employee->last_ip ?></p>
+				<div class="grid_6">
+					<p>
+						<b>Name: </b> <?php echo $this->employee->first_name?> <?php echo $this->employee->last_name?><br>
+						<b>Email:</b> <?php echo $this->employee->email?><br>
+						<b>Work Phone: </b> <?php echo $this->employee->work_phone?><br>
+						<b>Mobile Phone:</b> <?php echo $this->employee->mobile_phone?><br>
+						<b>Home Phone:</b> <?php echo $this->employee->home_phone?><br>
+					</p>
+				</div>
+				<div class="grid_5">
+					<p>
+						<b>Job Title:</b> <?php echo $this->employee->job_title?><br>
+						<b>Im Address:</b> <?php echo $this->employee->im?><br>
+						<b>Vehicle: </b> <?php echo $this->employee->vehicle?><br>
+						<b>Address:</b> <?php echo $this->employee->address?><br>
+					</p>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="buttons">
+					<a href="/employee/admin/index" class="button left" title="Back To Employees"><span class="icon icon120"></span></a>
+					<a href="/employee/admin/delete/id/<?php echo $this->employee->employee_id;?>" class="button middle" title="Delete"><span class="icon icon58"></span></a>
+					<a href="/employee/admin/edit/id/<?php echo $this->employee->employee_id;?>" class="button right" title="Edit"><span class="icon icon145"></span></a>
+				</div>
+		</div>
+	</div>
+	
+	
+</div>

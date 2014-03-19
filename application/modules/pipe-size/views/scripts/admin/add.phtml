@@ -1,0 +1,39 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add New Pipe Size</h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			
+			<form method="post" action="">
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('value');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			<br />
+			<div class="buttons">
+				<a href="/admin/list/index" class="button left" title="Back to Admin Lists"><span class="icon icon120"></span></a>
+				<a href="/pipe-size/admin/list" class="button right" title="Back to Pipe Size Lists"><span class="icon icon8"></span></a>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Employee_Model_Employee</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Admin.html"><i class="icon-folder-open"></i> Admin</a></li>
+<li><a href="../packages/Application.html"><i class="icon-folder-open"></i> Application</a></li>
+<li><a href="../packages/City.html"><i class="icon-folder-open"></i> City</a></li>
+<li><a href="../packages/Client.html"><i class="icon-folder-open"></i> Client</a></li>
+<li><a href="../packages/Controller.html"><i class="icon-folder-open"></i> Controller</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Employee.html"><i class="icon-folder-open"></i> Employee</a></li>
+<li><a href="../packages/Filtration.html"><i class="icon-folder-open"></i> Filtration</a></li>
+<li><a href="../packages/Install.html"><i class="icon-folder-open"></i> Install</a></li>
+<li><a href="../packages/Location.html"><i class="icon-folder-open"></i> Location</a></li>
+<li><a href="../packages/Model.html"><i class="icon-folder-open"></i> Model</a></li>
+<li><a href="../packages/Page.html"><i class="icon-folder-open"></i> Page</a></li>
+<li><a href="../packages/Phase.html"><i class="icon-folder-open"></i> Phase</a></li>
+<li><a href="../packages/Pipe.html"><i class="icon-folder-open"></i> Pipe</a></li>
+<li><a href="../packages/Pipe-size.html"><i class="icon-folder-open"></i> Pipe-size</a></li>
+<li><a href="../packages/Pump.html"><i class="icon-folder-open"></i> Pump</a></li>
+<li><a href="../packages/Pump-model.html"><i class="icon-folder-open"></i> Pump-model</a></li>
+<li><a href="../packages/Pump-type.html"><i class="icon-folder-open"></i> Pump-type</a></li>
+<li><a href="../packages/Pump-use.html"><i class="icon-folder-open"></i> Pump-use</a></li>
+<li><a href="../packages/PumpTest.html"><i class="icon-folder-open"></i> PumpTest</a></li>
+<li><a href="../packages/Pumptest.html"><i class="icon-folder-open"></i> Pumptest</a></li>
+<li><a href="../packages/Report.html"><i class="icon-folder-open"></i> Report</a></li>
+<li><a href="../packages/Schedule.html"><i class="icon-folder-open"></i> Schedule</a></li>
+<li><a href="../packages/Service.html"><i class="icon-folder-open"></i> Service</a></li>
+<li><a href="../packages/State.html"><i class="icon-folder-open"></i> State</a></li>
+<li><a href="../packages/Tank-Size.html"><i class="icon-folder-open"></i> Tank-Size</a></li>
+<li><a href="../packages/Tank-model.html"><i class="icon-folder-open"></i> Tank-model</a></li>
+<li><a href="../packages/Tank-size.html"><i class="icon-folder-open"></i> Tank-size</a></li>
+<li><a href="../packages/Tank-type.html"><i class="icon-folder-open"></i> Tank-type</a></li>
+<li><a href="../packages/TankModel.html"><i class="icon-folder-open"></i> TankModel</a></li>
+<li><a href="../packages/TankType.html"><i class="icon-folder-open"></i> TankType</a></li>
+<li><a href="../packages/Voltage.html"><i class="icon-folder-open"></i> Voltage</a></li>
+<li><a href="../packages/Well.html"><i class="icon-folder-open"></i> Well</a></li>
+<li><a href="../packages/Wire.html"><i class="icon-folder-open"></i> Wire</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1905</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">3</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_create" title="create :: "><span class="description">create()
+        </span><pre>create()</pre></a></li>
+<li class="method public "><a href="#method_delete" title="delete :: "><span class="description">delete()
+        </span><pre>delete()</pre></a></li>
+<li class="method public "><a href="#method_edit" title="edit :: "><span class="description">edit()
+        </span><pre>edit()</pre></a></li>
+<li class="method public "><a href="#method_getTable" title="getTable :: "><span class="description">getTable()
+        </span><pre>getTable()</pre></a></li>
+<li class="method public "><a href="#method_loadAllActive" title="loadAllActive :: "><span class="description">loadAllActive()
+        </span><pre>loadAllActive()</pre></a></li>
+<li class="method public "><a href="#method_loadById" title="loadById :: "><span class="description">loadById()
+        </span><pre>loadById()</pre></a></li>
+<li class="method public "><a href="#method_loadByName" title="loadByName :: "><span class="description">loadByName()
+        </span><pre>loadByName()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul><li class="property protected "><a href="#property__table" title="$_table :: "><span class="description"></span><pre>$_table</pre></a></li></ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Employee_Model_Employee"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Employee_Model_Employee.html">Employee_Model_Employee</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Quinns Well And Pump</p>
+<div class="details">
+<div class="long_description"><p>LICENSE</p>
+
+<p>This source file is subject to the new BSD license that is bundled
+with this package in the file LICENSE.txt.
+It is also available through the world-wide-web at this URL:
+http://www.i-support-services.com/license/new-bsd
+If you did not receive a copy of the license and are unable to
+obtain it through the world-wide-web, please send an email
+to license@i-support-services.com so we can send you a copy immediately.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>Employee</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Model.html">Model</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) Jaimie Garner 2013 I Support Services Inc. (http://www.i-support-services.com)</td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="http://www.i-support-services.com/license/new-bsd">New BSD License</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>$Id$</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_create"></a><div class="element clickable method public method_create" data-toggle="collapse" data-target=".method_create .collapse">
+<h2>create()
+        </h2>
+<pre>create(\unknown $firstName, \unknown $lastName, \unknown $email, \unknown $workPhone, \unknown $mobilePhone, \unknown $homePhone, \unknown $jobTitle, \unknown $address, \unknown $im, \unknown $vehicle, \unknown $status, \unknown $password, \unknown $acl) : mixed</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$firstName</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$lastName</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$workPhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$mobilePhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$homePhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$jobTitle</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$address</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$im</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$vehicle</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$password</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$acl</h4>
+<code>\unknown</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a id="method_delete"></a><div class="element clickable method public method_delete" data-toggle="collapse" data-target=".method_delete .collapse">
+<h2>delete()
+        </h2>
+<pre>delete() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_edit"></a><div class="element clickable method public method_edit" data-toggle="collapse" data-target=".method_edit .collapse">
+<h2>edit()
+        </h2>
+<pre>edit(\unknown $id, \unknown $firstName, \unknown $lastName, \unknown $email, \unknown $workPhone, \unknown $mobilePhone, \unknown $homePhone, \unknown $jobTitle, \unknown $address, \unknown $im, \unknown $vehicle, \unknown $status) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$firstName</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$lastName</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$email</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$workPhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$mobilePhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$homePhone</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$jobTitle</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$address</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$im</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$vehicle</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>\unknown</code>
+</div>
+</div></div>
+</div>
+<a id="method_getTable"></a><div class="element clickable method public method_getTable" data-toggle="collapse" data-target=".method_getTable .collapse">
+<h2>getTable()
+        </h2>
+<pre>getTable() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_loadAllActive"></a><div class="element clickable method public method_loadAllActive" data-toggle="collapse" data-target=".method_loadAllActive .collapse">
+<h2>loadAllActive()
+        </h2>
+<pre>loadAllActive($status) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument"><h4>$status</h4></div>
+</div></div>
+</div>
+<a id="method_loadById"></a><div class="element clickable method public method_loadById" data-toggle="collapse" data-target=".method_loadById .collapse">
+<h2>loadById()
+        </h2>
+<pre>loadById(int $employeeId) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$employeeId</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method_loadByName"></a><div class="element clickable method public method_loadByName" data-toggle="collapse" data-target=".method_loadByName .collapse">
+<h2>loadByName()
+        </h2>
+<pre>loadByName(\unknown $first, \unknown $last) : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$first</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$last</h4>
+<code>\unknown</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__table"> </a><div class="element clickable property protected property__table" data-toggle="collapse" data-target=".property__table .collapse">
+<h2></h2>
+<pre>$_table : \Zend_Db_Table_Abstract</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-29T17:57:24-07:00.<br></footer></div>
+</div>
+</body>
+</html>

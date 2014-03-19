@@ -1,0 +1,36 @@
+<?php if($this->auth()->hasIdentity()) {?>
+	<?php $param = $this->auth()->getIdentity();?>
+		<?php echo $this->MainNav();?>
+<?php } ?>
+<?php echo $this->breadcrumb($this->breadcrumb);?>
+<div class="clear"></div>
+<div class="grid_16">
+	<div class="box round first fullpage">
+		<h2>Online Backup Solution</h2>
+		<img src="/images/secure-online-backup.png" alt="Hosted Exchange" class="left" />
+		 <div class="block">
+		 	<p class="start">
+		 		Trust your valuable business data to a solution designed for home users? While those 
+		 		solutions are great for backing up small files and your music library.. do you really 
+		 		want to trust it with your financial and mission critical data? Our Offsite Backup 
+		 		Solution is a true business class solution that offers a robust list of features which 
+		 		not only will give you the peace of mind your business deserves but also help any business 
+		 		in developing a disaster recovery plan.</p>
+
+			<p>Are you protected against a disaster? If you lost all your data today, how would you 
+				recover from the loss? Are local backups enough? How would a loss like this affect me 
+				financially? These are a few questions business owners should ask themselves before 
+				implementing any backup solution. Absolutely, local backups are a must…but what about an 
+				Offsite Backup? One thing to consider is… what if your onsite backups were not 
+				functioning? Unless you have your local Backups notifying you every day or a Managed 
+				Service plan to alert you if there is an issue, then this could be a problem if you ever 
+				lost your data. An Offsite Backup solution also serves as a backup if your local backup 
+				fails. Having a redundant backup is always a good idea.</p>
+
+			<p>Our Offsite Backup solution offers secure encrypted transmission methods as well as 
+				secure encrypted storage (AES 256 bit) in redundant datacenter facilities. We offer 
+				Server based and Desktop Offsite Backup solutions with no limit on size. Call us or get a 
+				free quote by filling in the information below.</p>
+		 </div>
+	</div>
+</div>

@@ -1,0 +1,61 @@
+<script>         
+$(document).ready(function() {
+    $('#example').dataTable();
+} );
+</script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Pump Model List</h2>
+		<div class="block">
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Model information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'add-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Model was Successfuly added.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'delete-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Model was Successfuly deleted.</p>
+               </div>
+			<?php }?>
+				 <table class="data display datatable" id="example">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Value</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $i = 0;?>
+					<?php foreach($this->pumpModels as $pumpModel) { ?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $pumpModel->id;?></td>
+						<td><?php echo $pumpModel->value;?></td>
+						<td>
+							<a style="float:right" href="/pump-model/admin/edit/id/<?php echo $pumpModel->id;?>" class="button left" title="Edit Pump Model"><span class="icon icon145"></span></a>
+							<a style="float:right" href="/pump-model/admin/delete/id/<?php echo $pumpModel->id;?>" class="button left" title="Delete Pump Model"><span class="icon icon58"></span></a>
+						</td>
+					</tr>
+					<?php $i++; ?>
+					<?php }?>
+					
+					</tbody>
+				</table>
+			<div class="buttons">
+				<a href="/admin/list/index" class="button left" title="Back to Admin Lists"><span class="icon icon120"></span></a>
+				<a href="/pump-model/admin/add" class="button middle" title="Add Pump Model"><span class="icon icon3"></span></a>
+				
+				<?php echo $this->paginationControl($this->pumpModels,'Sliding', 'controls.phtml'); ?>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,84 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Welcome <?php echo $this->employee->first_name?> <?php echo $this->employee->last_name?></h2>
+		<div class="block">
+			<?php if($this->msg == 'recent-removed') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Recent Location was Successfuly removed.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>Your Information was Successfuly removed.</p>
+               </div>
+			<?php }?>
+		
+				<p class="meta">Last Sign In - <?php echo date('m/d/Y - H:m', $this->employee->last_signin)?> from <?php echo $this->employee->last_ip ?></p>
+				<div class="grid_6">
+					<p>
+						<b>Name: </b> <?php echo $this->employee->first_name?> <?php echo $this->employee->last_name?><br>
+						<b>Email:</b> <?php echo $this->employee->email?><br>
+						<b>Work Phone: </b> <?php echo $this->employee->work_phone?><br>
+						<b>Mobile Phone:</b> <?php echo $this->employee->mobile_phone?><br>
+						<b>Home Phone:</b> <?php echo $this->employee->home_phone?><br>
+					</p>
+				</div>
+				<div class="grid_5">
+					<p>
+						<b>Job Title:</b> <?php echo $this->employee->job_title?><br>
+						<b>Im Address:</b> <?php echo $this->employee->im?><br>
+						<b>Vehicle: </b> <?php echo $this->employee->vehicle?><br>
+						<b>Address:</b> <?php echo $this->employee->address?><br>
+					</p>
+				</div>
+				<div class="clear"></div>
+				<div class="buttons">
+					<a href="/employee/edit/index/id/<?php echo $this->employee->employee_id;?>" class="button" title="Edit"><span class="icon icon145"></span></a>
+				</div>
+			
+			 
+			
+			
+		</div>
+	</div>
+	
+	<div class="box round fullpage">
+				<h2>Recent Viewed Locations</h2>
+				<div class="block">
+					<table class="data display datatable" summary="All Employees">
+						<thead>
+							<tr>
+								<th>Location</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php $i = 0;?>
+						<?php foreach($this->recent as $recent) { ?>
+						<?php if (0 == $i % 2) { ?><tr class="odd"><?php }else{ ?><tr class="even"><?php }?>
+								<td><a href="/location/view/index/id/<?php echo $recent->location_id;?>" title="View Location"><?php echo $recent->street?></a></td>
+								<td>
+									<a style="float:right" href="/employee/delete/recent/id/<?php echo $recent->id;?>" class="button left" title="Delete Recent Location"><span class="icon icon58"></span></a>
+								<br />
+								</td>
+							</tr>
+						<?php $i++; ?>
+						<?php } ?>
+						</tbody>
+					</table>
+					<br />
+					<div class="buttons">
+						<a  href="/employee/delete/all-recent/" class="button left" title="Delete All Recent Location"><span class="icon icon58"></span><span>Delete All Recent Locations</span></a>
+							
+					</div>
+				</div>
+			</div>
+</div>
+
+
+
+
+	

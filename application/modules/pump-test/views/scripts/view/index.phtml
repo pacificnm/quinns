@@ -1,0 +1,128 @@
+<script type="text/javascript" src="/js/jqPlot/plugins/jqplot.barRenderer.min.js"></script>
+<script type="text/javascript" src="/js/jqPlot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script type="text/javascript" src="/js/jqPlot/plugins/jqplot.pointLabels.min.js"></script>
+<script type="text/javascript" src="/js/jqPlot/jquery.jqplot.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/js/jqPlot/jquery.jqplot.css" />
+
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>View Pump Test For Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+		
+			<?php if($this->msg == 'pump-test-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Test information was Successfuly added.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Test information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'edit-pump-test-data') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump Test Data was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<div class="grid_9 pad_4"><b>Test Requirements:</b> <?php echo (!empty($this->pumpTest->requirements) ? $this->pumpTest->requirements : 'No Data' );?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_5 pad_4"><b>Location:</b> <?php echo $this->location->street;?> <?php echo $this->location->city;?>, <?php echo $this->location->state;?> <?php echo $this->location->zip;?></div>
+			<div class="grid_2 pad_4"><b>Source:</b> <?php echo (!empty($this->pumpTest->source) ? $this->pumpTest->source : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Depth:</b> <?php echo (!empty($this->pumpTest->depth) ? $this->pumpTest->depth .' feet' : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Diameter:</b> <?php echo $this->pumpTest->diameter;?> inches</div>
+			<div class="clear"></div>
+			
+			<div class="grid_8 pad_4"><b>Equipment Used:</b> <?php echo (!empty($this->pumpTest->equipment) ? $this->pumpTest->equipment : 'No Data' );?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Pumping Level:</b> <?php echo (!empty($this->pumpTest->level) ? $this->pumpTest->level . ' feet' : 'No Data');?> <br /></div>			
+			<div class="grid_2 pad_4"><b>Vent:</b>  <?php echo (!empty($this->pumpTest->vent) ? $this->pumpTest->vent : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Seal:</b> <?php echo (!empty($this->pumpTest->seal) ? $this->pumpTest->seal : 'No Data');?></div>
+			<div class="grid_3 pad_4"><b>Pop Off Valve:</b> <?php echo (!empty($this->pumpTest->pop_off_valve) ? $this->pumpTest->pop_off_valve : 'No Data');?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Water Color:</b> <?php echo (!empty($this->pumpTest->color) ? $this->pumpTest->color : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Taste:</b> <?php echo (!empty($this->pumpTest->taste) ? $this->pumpTest->taste : 'No Data');?></div>
+			<div class="grid_2 pad_4"><b>Odor:</b> <?php echo (!empty($this->pumpTest->odor) ? $this->pumpTest->odor : 'No Data');?></div>
+			<div class="grid_3 pad_4"><b>Test Date:</b> <?php echo date("m/d/Y",$this->pumpTest->date);?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_4 pad_4"><b>Conducted By:</b>  <?php echo $this->pumpTest->first_name;?> <?php echo $this->pumpTest->last_name?></div>
+			<div class="grid_6 pad_4"><b>Requested By:</b>  <a href="/owner/view/index/id/<?php echo $this->pumpTest->owner;?>"><?php echo $this->pumpTest->name;?></a></div>
+			<div class="clear"></div>
+			
+			<div class="grid_8 pad_4"><b>Remarks:</b> <?php echo (!empty($this->pumpTest->remarks) ? $this->pumpTest->remarks : 'No Data');?></div>
+			<div class="clear"></div>
+			<br />
+			
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/pump-test/edit/index/id/<?php echo $this->pumpTest->id;?>" class="button middle" title="Edit Pump Test"><span class="icon icon145"></span></a>
+				<a href="/pump-test/delete/index/id/<?php echo $this->pumpTest->id;?>" class="button middle" title="Delete Pump Test"><span class="icon icon58"></span></a>								
+				<a href="/pump-test/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="New Pump Test"><span class="icon icon138" ></span><span class="label">New Pump Test</span></a>
+				<a href="/pump-test/view/all/id/<?php echo $this->location->id;?>" class="button middle" title="View All Past Pump Tests"><span class="icon icon138" ></span><span class="label">View All</span></a>
+				<a href="/pump-test/report/index/id/<?php echo $this->pumpTest->id;?>" class="button right" title="Print Pump Test"><span class="icon icon153" ></span><span class="label">Print Test</span></a>
+					
+			</div>
+			<div class="clear"></div>
+			
+			<div id="chart1" class="grid_12"></div>
+			<div class="clear"></div>
+			
+			<div id="chart2" class="grid_12"></div>
+			<div class="clear"></div>
+			<br />
+			<h6>Test Data:</h6>
+			
+			<div class="grid_2 pad_4"><b>Time</b></div>
+			<div class="grid_2 pad_4"><b>Flow</b></div>
+			<div class="grid_2 pad_4"><b>Level</b></div>
+			<div class="grid_2 pad_4"><b>Meter</b></div>
+			<div class="clear"></div>
+			<?php $meter = 0;?>
+			<?php $count = 0;?>
+			<?php $flowAverage = 0;?>
+			<?php $averageLevel = 0;?>
+			<?php foreach($this->pumpFlow as $data) {?>
+				<?php $meter = $meter + ($data->flow * 15);?>
+				<?php $flowAverage =  $flowAverage + $data->flow;?>
+				<?php $averageLevel = $averageLevel + $data->static;?>
+				<?php $count++;?>
+				
+				<div class="grid_2 pad_4"><?php echo $data->time;?></div>
+				<div class="grid_2 pad_4"><?php echo $data->flow;?> GPM</div>
+				<div class="grid_2 pad_4"><?php echo $data->static;?> feet</div>
+				<div class="grid_2 pad_4"><?php echo  number_format($meter, 2, '.', '');?> Gallons</div>
+				<div class="clear"></div>
+				
+			<?php }?>
+			<hr />
+			<div class="grid_2 pad_4"><b>Total Time</b></div>
+			<div class="grid_2 pad_4"><b>Flow Average</b></div>	
+			<div class="grid_2 pad_4"><b>Average Level</b></div>
+			<div class="grid_2 pad_4"><b>Total Gallons</b></div>
+			<div class="clear"></div>	
+			
+			<div class="grid_2 pad_4"><b></b></div>
+			<div class="grid_2 pad_4"><?php echo number_format($flowAverage / $count, 2, '.', '') ?> GPM</div>
+			<div class="grid_2 pad_4"><?php echo number_format($averageLevel / $count, 2, '.', '') ?> feet</div>
+			<div class="grid_2 pad_4"><?php echo  number_format($meter, 2, '.', '');?> Gallons</div>
+			<div class="clear"></div>
+			<div class="buttons">
+				<a href="/pump-test/edit/flow/id/<?php echo $this->pumpTest->id;?>" class="button middle" title="Edit Pump Flow Data"><span class="icon icon145"></span></a>								
+			</div>		
+		</div>
+	</div>
+</div>
+
+
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

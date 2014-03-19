@@ -1,0 +1,39 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>View All Pump Tests For Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<table class="data display ">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Date</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->pumpTests as $pumpTest) { ?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $pumpTest->id?></td>
+						<td><a href="/pump-test/view/index/id/<?php echo $pumpTest->id;?>" title="View Pump test"><?php echo date("M d, Y",$pumpTest->date)?></a></td>
+						<td></td>
+					</tr>
+				<?php }?>
+				</tbody>
+			</table>
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/pump-test/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="New Pump Test"><span class="icon icon138" ></span><span class="label">New Pump Test</span></a>
+					
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

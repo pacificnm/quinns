@@ -1,0 +1,51 @@
+<div class="grid_9">
+	<div class="box round first fullpage">
+		<h2>Sign In</h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post">
+				<div class="grid_4">
+					<h6>Please Sign In</h6>
+					<div class="grid_3 pad_4"><?php echo $this->form->getElement('email');?></div>
+					<div class="clear"></div>
+					<div class="grid_3 pad_4"><?php echo $this->form->getElement('password');?></div>
+					<div class="clear"></div>
+					<div class="grid_3 pad_4">
+						<?php echo $this->form->getElement('no_csrf');?>
+						<?php echo $this->form->getElement('signin');?>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="grid_2">
+					<img src="/images/it-security-content-filtering.png" alt="No Contracts" class="left" />
+				</div>
+				<div class="clear"></div>
+			</form>
+			<br />
+			<?php if($this->allowSignUp) {?>
+				<div class="grid_6 pad_4">Don't have an account, <a href="/client/register">Register Now.</a></div>
+				<div class="clear"></div>
+			<?php }?>
+			<?php if($this->allowLostPassword) {?>
+				<div class="grid_6 pad_4">Can't access your account? <a href="">Reset Password</a>.</div>
+				<div class="clear"></div>
+			<?php }?>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+

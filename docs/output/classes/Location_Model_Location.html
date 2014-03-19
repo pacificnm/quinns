@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Location_Model_Location</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Admin.html"><i class="icon-folder-open"></i> Admin</a></li>
+<li><a href="../packages/Application.html"><i class="icon-folder-open"></i> Application</a></li>
+<li><a href="../packages/City.html"><i class="icon-folder-open"></i> City</a></li>
+<li><a href="../packages/Client.html"><i class="icon-folder-open"></i> Client</a></li>
+<li><a href="../packages/Controller.html"><i class="icon-folder-open"></i> Controller</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/Employee.html"><i class="icon-folder-open"></i> Employee</a></li>
+<li><a href="../packages/Filtration.html"><i class="icon-folder-open"></i> Filtration</a></li>
+<li><a href="../packages/Install.html"><i class="icon-folder-open"></i> Install</a></li>
+<li><a href="../packages/Location.html"><i class="icon-folder-open"></i> Location</a></li>
+<li><a href="../packages/Model.html"><i class="icon-folder-open"></i> Model</a></li>
+<li><a href="../packages/Page.html"><i class="icon-folder-open"></i> Page</a></li>
+<li><a href="../packages/Phase.html"><i class="icon-folder-open"></i> Phase</a></li>
+<li><a href="../packages/Pipe.html"><i class="icon-folder-open"></i> Pipe</a></li>
+<li><a href="../packages/Pipe-size.html"><i class="icon-folder-open"></i> Pipe-size</a></li>
+<li><a href="../packages/Pump.html"><i class="icon-folder-open"></i> Pump</a></li>
+<li><a href="../packages/Pump-model.html"><i class="icon-folder-open"></i> Pump-model</a></li>
+<li><a href="../packages/Pump-type.html"><i class="icon-folder-open"></i> Pump-type</a></li>
+<li><a href="../packages/Pump-use.html"><i class="icon-folder-open"></i> Pump-use</a></li>
+<li><a href="../packages/PumpTest.html"><i class="icon-folder-open"></i> PumpTest</a></li>
+<li><a href="../packages/Pumptest.html"><i class="icon-folder-open"></i> Pumptest</a></li>
+<li><a href="../packages/Report.html"><i class="icon-folder-open"></i> Report</a></li>
+<li><a href="../packages/Schedule.html"><i class="icon-folder-open"></i> Schedule</a></li>
+<li><a href="../packages/Service.html"><i class="icon-folder-open"></i> Service</a></li>
+<li><a href="../packages/State.html"><i class="icon-folder-open"></i> State</a></li>
+<li><a href="../packages/Tank-Size.html"><i class="icon-folder-open"></i> Tank-Size</a></li>
+<li><a href="../packages/Tank-model.html"><i class="icon-folder-open"></i> Tank-model</a></li>
+<li><a href="../packages/Tank-size.html"><i class="icon-folder-open"></i> Tank-size</a></li>
+<li><a href="../packages/Tank-type.html"><i class="icon-folder-open"></i> Tank-type</a></li>
+<li><a href="../packages/TankModel.html"><i class="icon-folder-open"></i> TankModel</a></li>
+<li><a href="../packages/TankType.html"><i class="icon-folder-open"></i> TankType</a></li>
+<li><a href="../packages/Voltage.html"><i class="icon-folder-open"></i> Voltage</a></li>
+<li><a href="../packages/Well.html"><i class="icon-folder-open"></i> Well</a></li>
+<li><a href="../packages/Wire.html"><i class="icon-folder-open"></i> Wire</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">1905</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">3</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: loads cache"><span class="description">loads cache</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_addLatLng" title="addLatLng :: Adds Lat and Lon to Location"><span class="description">Adds Lat and Lon to Location</span><pre>addLatLng()</pre></a></li>
+<li class="method public "><a href="#method_addPlls" title="addPlls :: Adds PLSS Data"><span class="description">Adds PLSS Data</span><pre>addPlls()</pre></a></li>
+<li class="method public "><a href="#method_browse" title="browse :: Paganated Page to browse locations by"><span class="description">Paganated Page to browse locations by</span><pre>browse()</pre></a></li>
+<li class="method public "><a href="#method_create" title="create :: Creates new Location"><span class="description">Creates new Location</span><pre>create()</pre></a></li>
+<li class="method public "><a href="#method_edit" title="edit :: Updates a location record"><span class="description">Updates a location record</span><pre>edit()</pre></a></li>
+<li class="method public "><a href="#method_getTable" title="getTable :: Loads the Location Databas Table"><span class="description">Loads the Location Databas Table</span><pre>getTable()</pre></a></li>
+<li class="method public "><a href="#method_loadAll" title="loadAll :: Loads All Records"><span class="description">Loads All Records</span><pre>loadAll()</pre></a></li>
+<li class="method public "><a href="#method_loadByAddress" title="loadByAddress :: Loads by an Address"><span class="description">Loads by an Address</span><pre>loadByAddress()</pre></a></li>
+<li class="method public "><a href="#method_loadById" title="loadById :: Loads by location id"><span class="description">Loads by location id</span><pre>loadById()</pre></a></li>
+<li class="method public "><a href="#method_loadByOldId" title="loadByOldId :: Loads records by Old Id"><span class="description">Loads records by Old Id</span><pre>loadByOldId()</pre></a></li>
+<li class="method public "><a href="#method_loadCity" title="loadCity :: Loads all cities"><span class="description">Loads all cities</span><pre>loadCity()</pre></a></li>
+<li class="method public "><a href="#method_loadNearBy" title="loadNearBy :: Loads nearby locations based of lat and lon"><span class="description">Loads nearby locations based of lat and lon</span><pre>loadNearBy()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected "><a href="#property__cache" title="$_cache :: "><span class="description"></span><pre>$_cache</pre></a></li>
+<li class="property protected "><a href="#property__table" title="$_table :: "><span class="description"></span><pre>$_table</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\Location_Model_Location"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Location_Model_Location.html">Location_Model_Location</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Quinns Well And Pump</p>
+<div class="details">
+<div class="long_description"><p>LICENSE</p>
+
+<p>This source file is subject to the new BSD license that is bundled
+with this package in the file LICENSE.txt.
+It is also available through the world-wide-web at this URL:
+http://www.i-support-services.com/license/new-bsd
+If you did not receive a copy of the license and are unable to
+obtain it through the world-wide-web, please send an email
+to license@i-support-services.com so we can send you a copy immediately.</p></div>
+<table class="table table-bordered">
+<tr>
+<th>category</th>
+<td>Location</td>
+</tr>
+<tr>
+<th>package</th>
+<td><a href="../packages/Model.html">Model</a></td>
+</tr>
+<tr>
+<th>copyright</th>
+<td>Copyright (c) Jaimie Garner 2013 I Support Services Inc. (http://www.i-support-services.com)</td>
+</tr>
+<tr>
+<th>license</th>
+<td><a href="http://www.i-support-services.com/license/new-bsd">New BSD License</a></td>
+</tr>
+<tr>
+<th>version</th>
+<td>$Id$</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>loads cache</h2>
+<pre>__construct() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_addLatLng"></a><div class="element clickable method public method_addLatLng" data-toggle="collapse" data-target=".method_addLatLng .collapse">
+<h2>Adds Lat and Lon to Location</h2>
+<pre>addLatLng(int $id, string $lat, string $lng) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code>
+</div>
+<div class="subelement argument">
+<h4>$lat</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$lng</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_addPlls"></a><div class="element clickable method public method_addPlls" data-toggle="collapse" data-target=".method_addPlls .collapse">
+<h2>Adds PLSS Data</h2>
+<pre>addPlls(int $id, string $township, string $townshipChar, string $rang, string $rangChar, string $section, string $division) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>int</code>
+</div>
+<div class="subelement argument">
+<h4>$township</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$townshipChar</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$rang</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$rangChar</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$section</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$division</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_browse"></a><div class="element clickable method public method_browse" data-toggle="collapse" data-target=".method_browse .collapse">
+<h2>Paganated Page to browse locations by</h2>
+<pre>browse(int $page) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>returns</th>
+<td>Zend_Db_Table_Row_Abstract</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$page</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a id="method_create"></a><div class="element clickable method public method_create" data-toggle="collapse" data-target=".method_create .collapse">
+<h2>Creates new Location</h2>
+<pre>create(string $street, string $street2, string $city, string $state, string $zip, int $status, int $oldId) : int</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$street</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$street2</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$city</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$state</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$zip</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>int</code>
+</div>
+<div class="subelement argument">
+<h4>$oldId</h4>
+<code>int</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>int</code></div>
+</div></div>
+</div>
+<a id="method_edit"></a><div class="element clickable method public method_edit" data-toggle="collapse" data-target=".method_edit .collapse">
+<h2>Updates a location record</h2>
+<pre>edit(\unknown $id, \unknown $street, \unknown $street2, \unknown $city, \unknown $state, \unknown $zip, \unknown $status) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$street</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$street2</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$city</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$state</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$zip</h4>
+<code>\unknown</code>
+</div>
+<div class="subelement argument">
+<h4>$status</h4>
+<code>\unknown</code>
+</div>
+</div></div>
+</div>
+<a id="method_getTable"></a><div class="element clickable method public method_getTable" data-toggle="collapse" data-target=".method_getTable .collapse">
+<h2>Loads the Location Databas Table</h2>
+<pre>getTable() : \Zend_Db_Table_Abstract</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>\Zend_Db_Table_Abstract</code></div>
+</div></div>
+</div>
+<a id="method_loadAll"></a><div class="element clickable method public method_loadAll" data-toggle="collapse" data-target=".method_loadAll .collapse">
+<h2>Loads All Records</h2>
+<pre>loadAll() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>returns</th>
+<td>Zend_Db_Table_Row_Abstract</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_loadByAddress"></a><div class="element clickable method public method_loadByAddress" data-toggle="collapse" data-target=".method_loadByAddress .collapse">
+<h2>Loads by an Address</h2>
+<pre>loadByAddress(\unknown $address) : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$address</h4>
+<code>\unknown</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<a id="method_loadById"></a><div class="element clickable method public method_loadById" data-toggle="collapse" data-target=".method_loadById .collapse">
+<h2>Loads by location id</h2>
+<pre>loadById(\unknown $id) : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\unknown</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<a id="method_loadByOldId"></a><div class="element clickable method public method_loadByOldId" data-toggle="collapse" data-target=".method_loadByOldId .collapse">
+<h2>Loads records by Old Id</h2>
+<pre>loadByOldId(\unknown $id) : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$id</h4>
+<code>\unknown</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<a id="method_loadCity"></a><div class="element clickable method public method_loadCity" data-toggle="collapse" data-target=".method_loadCity .collapse">
+<h2>Loads all cities</h2>
+<pre>loadCity() : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<a id="method_loadNearBy"></a><div class="element clickable method public method_loadNearBy" data-toggle="collapse" data-target=".method_loadNearBy .collapse">
+<h2>Loads nearby locations based of lat and lon</h2>
+<pre>loadNearBy(string $centerLat, string $centerLng) : \Ambigous</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$centerLat</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$centerLng</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>\Ambigous</code><Zend_Db_Table_Row_Abstract, NULL, unknown></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property__cache"> </a><div class="element clickable property protected property__cache" data-toggle="collapse" data-target=".property__cache .collapse">
+<h2></h2>
+<pre>$_cache : \Zend_Cache</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property__table"> </a><div class="element clickable property protected property__table" data-toggle="collapse" data-target=".property__table .collapse">
+<h2></h2>
+<pre>$_table : \Zend_Db_Table_Abstract</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-04-29T17:57:21-07:00.<br></footer></div>
+</div>
+</body>
+</html>

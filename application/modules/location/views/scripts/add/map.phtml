@@ -1,0 +1,48 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add Location Mapping Information For <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->googleStatus == 'OK') {?>
+				<div class="message warning">
+                	<h5>Google</h5>
+                    <p>Google foud Data for location <?php echo $this->location->street;?>.</p>
+               </div>
+               <div class="grid_2 pad_4"><b>Lat:</b> <?php echo $this->lat;?></div>
+               <div class="grid_2 pad_4"><b>Lng:</b> <?php echo $this->lng;?></div>
+               <div class="grid_2 pad_4"><b>Distance:</b> <?php echo $this->distance;?></div>
+               <div class="grid_2 pad_4"><b>Duration:</b> <?php echo $this->duration;?></div>
+               <div class="clear"></div>
+               <h6>Driving Directions</h6>
+               <div class="grid_11 pad_4">
+               		<?php echo $this->directions;?>
+               	
+               	</div>
+               <div class="clear"></div>
+			<?php } else {?>
+				<div class="message error">
+                	<h5>Google Error!</h5>
+                    <p>Google was unable to finde Data for location <?php echo $this->location->street;?>.</p>
+               </div>
+			<?php }?>
+			
+			<br />
+			<div class="grid_4 pad_4"><b>PLSS From BLM:</b> <?php echo $this->plss;?></div>
+			<div class="clear"></div>
+			<br />
+			
+			<?php if( $this->googleStatus == 'OK') {?>
+				<form method="post" action="">
+					<div class="std-btn" ><input type="submit" name="submit" id="submit" value="Import Above Information" class="btn btn-teal"/></div>
+				</form>
+			<?php }?>
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>	
+			</div>	
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

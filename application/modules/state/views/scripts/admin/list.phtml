@@ -1,0 +1,55 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>State List</h2>
+		<div class="block">
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The State information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'add-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The State information was Successfuly added.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'delete-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The State information was Successfuly deleted.</p>
+               </div>
+			<?php }?>
+				<table class="data display datatable">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Value</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $i = 0;?>
+					<?php foreach($this->states as $state) { ?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+							<td><?php echo $state->id;?></td>
+							<td><?php echo $state->value;?></td>
+							<td>
+								<a style="float:right" href="/state/admin/edit/id/<?php echo $state->id;?>" class="button left" title="Edit State"><span class="icon icon145"></span></a>
+								<a style="float:right" href="/state/admin/delete/id/<?php echo $state->id;?>" class="button left" title="Delete State"><span class="icon icon58"></span></a>
+							</td>
+						</tr>
+					<?php $i++; ?>
+					<?php }?>
+					</tbody>
+				</table>
+			<br />
+			<div class="buttons">
+				<a href="/admin/list/index" class="button left" title="Back to Admin Lists"><span class="icon icon120"></span></a>
+				<a href="/state/admin/add" class="button right" title="Add New City"><span class="icon icon3"></span></a>
+			
+			</div>
+		</div>
+	</div>
+</div>

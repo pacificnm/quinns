@@ -1,0 +1,70 @@
+<script src="/js/fields/owner.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Edit Service Performed on <?php echo date("m/d/Y", $this->service->date);?> at Location <?php echo $this->location->street?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			<form method="post" action="">
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('date');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('status');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('employee');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_8 pad_4"><?php echo $this->form->getElement('owner');?>
+					<div class="pump">
+						<div class="ownerAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('pump');?></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('complaint');?></div>
+				<div class="clear"></div>
+				
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('description');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('directions');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('flow_test');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+				
+			</form>		
+				
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/service/view/index/id/<?php echo $this->service->id;?>" class="button middle" title="Back To Service"><span class="icon icon167"></span></a>
+			</div>
+			<div class="clear"></div>		
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

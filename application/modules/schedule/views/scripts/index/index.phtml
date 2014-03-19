@@ -1,0 +1,55 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Service Due</h2>
+		<div class="block">
+			<div class="grid_10">
+				<?php echo $this->paginationControl($this->services , 'Sliding', 'controls.phtml');?>
+			</div>
+			<div class="grid_1">
+				<div class="buttons">
+					<a  href="/report/servic-due/index/startDate/<?php echo $this->startDate;?>/endDate/<?php echo $this->endDate;?>" class="button left" title="Print Report"><span class="icon icon153" ></span></a>
+				
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+			<table class="data display">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Location</th>
+						<th>Owner</th>
+						<th>Phone</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->services as $service) {?>	
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo date("m/d/Y",$service->service_due);?></td>
+						<td><a href="/location/view/index/id/<?php echo $service->location;?>"><?php echo $service->street;?> <?php echo $service->city;?></a></td>
+						<td><?php echo $service->name;?></td>
+						<td><?php echo $service->phone;?></td>
+					</tr>
+					<?php $i++; ?>
+				<?php }?>
+				</tbody>
+			</table>
+			<?php echo $this->paginationControl($this->services , 'Sliding', 'controls.phtml');?>							
+		</div>
+	</div>
+</div>
+
+<div class="grid_4">
+	
+	
+	<div class="box round first">
+		<h2>Search</h2>
+		<?php echo $this->form;?>
+		<div class="clear"></div>
+	</div>
+	<?php echo $this->recent(0);?>		
+</div>
+<div class="clear"></div>			
+			

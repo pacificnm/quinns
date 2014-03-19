@@ -1,0 +1,116 @@
+<script src="/js/fields/pumpModel.js" type="text/javascript"></script>
+<script src="/js/fields/pumpType.js" type="text/javascript"></script>
+<script src="/js/fields/pipe.js" type="text/javascript"></script>
+<script src="/js/fields/tankSize.js" type="text/javascript"></script>
+<script src="/js/fields/tankModel.js" type="text/javascript"></script>
+<script src="/js/fields/tankType.js" type="text/javascript"></script>
+<script src="/js/fields/filtration.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Add Pump to Location <?php echo $this->location->street?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php }?>
+            <?php if(!empty($this->wellLog)) {?>
+				<div class="message warning">
+                	<h5>Information!</h5>
+                    <p>Found a State Well Log with the address <?php echo $this->wellLog->street_of_well;?>. Using Data from this log to fill in fields.</p>
+                </div>
+			<?php }?>
+           
+				<form method="post" action="">
+				<h6>Pump Information</h6>
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('pump_model'); ?>
+					<div class="pump">
+						<div class="pumpAutoComplete auto"><ul></ul></div>
+					</div>
+					
+				</div>
+				<div class="grid_3 pad_4 pumpType"><?php echo $this->form->getElement('pump_type');?>
+					<div class="pump">
+						<div class="pumpTypeAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('well_depth');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('pump_depth');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('voltage');?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('phase');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('wire');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('static_level');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('pipe');?>
+					<div class="pump">
+						<div class="pipeAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('pipe_size')?></div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('pump_tag')?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('use')?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('yield')?></div>
+				<div class="clear"></div>
+				<br />
+				
+				<h6>Tank Information</h6>
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('tank_model');	?>
+					<div class="pump">
+						<div class="tankModelAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('tank_type');?>
+					<div class="pump">
+						<div class="tankTypeAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('tank_size');?>
+					<div class="pump">
+						<div class="tankSizeAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid_6 pad_4"><?php echo $this->form->getElement('filtration');?>
+					<div class="pump">
+						<div class="filtrationAutoComplete auto"><ul></ul></div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+				</form>
+			
+			<br />
+			
+			
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+			</div>		
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+	<?php echo $this->recent(0);?>
+</div>
+<div class="clear"></div>

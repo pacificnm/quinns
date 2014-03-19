@@ -1,0 +1,55 @@
+<?php echo $this->MainNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Employees</h2>
+		<div class="block">
+			<form method="post" action="">
+				<div class="grid_4 pad_4"><?php echo $this->form->getElement('status');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			<br />
+			<table class="data display datatable" summary="All Employees">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Access</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->employees as $employee) { ?>
+				<?php if (0 == $i % 2) { ?><tr class="odd"><?php }else{ ?><tr class="even"><?php }?>
+						<td><?php echo $employee->employee_id;?></td>
+						<td><a href="/employee/admin/view/id/<?php echo $employee->employee_id;?>" title="View Employee"><?php echo $employee->first_name;?></a></td>
+						<td><?php echo $employee->last_name;?></td>
+						<td><?php echo $employee->email;?></td>
+						<td><?php echo $employee->acl?></td>
+						<td>
+							<a style="float:right" href="/employee/admin/edit/id/<?php echo $employee->employee_id;?>" class="button left" title="Edit Employee"><span class="icon icon145"></span></a>
+							<a style="float:right" href="/employee/admin/delete/id/<?php echo $employee->employee_id;?>" class="button left" title="Delete Employee"><span class="icon icon58"></span></a>
+							<br />
+						</td>
+					</tr>
+				<?php $i++; ?>
+				<?php } ?>
+				</tbody>
+			</table>
+			<br />
+			<div class="buttons">
+				<a href="/employee/admin/add" class="button left" title="Add Employee"><span class="icon icon194"></span><span class="label">Add Employee</span></a>
+			</div>	
+		</div>
+	</div>
+</div>
+
+<div class="clear"></div>

@@ -1,0 +1,73 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+ 		<h2>Search Old Database</h2>
+        <div class="block">
+            <?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                    	The following errors where found:<br /><br />
+                    	<?php foreach($this->form->getMessages() as $message) {?>
+                    		<?php foreach($message as $error) {?>
+                    			<?php echo$error ?> <br />
+                    		<?php }?>
+                    	<?php }?>
+                    	<br />
+                    	Please correct the above errors and save your information.
+                    </p>
+                </div>
+			<?php } ?>
+			
+            <form method="post" action="">
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('search');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+		    </form>
+        </div>
+    </div>
+    
+    <?php if($this->results) { ?>
+		    <div class="box round  fullpage">
+        		<h2>Results</h2>
+        		<div class="block">
+        		      <table class="data display  ">
+        		          <thead>
+        		              <tr>
+        		                  <th>ID</th>
+        		                  <th>Street</th>
+        		                  <th>City</th>
+        		                  <th>State</th>
+        		                  <th>Zip</th>
+        		                  <th></th>
+        		              </tr>
+        		          </thead>
+        		      <?php $i = 0;?>
+        		      <?php foreach($this->results as $result) { ?>
+        		      <?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+        		          <tr>
+        		              <td><?php echo $result->Record_Id; ?></td>
+        		              <td><?php echo $result->Address; ?></td>
+        		              <td><?php echo $result->City;?></td>
+        		              <td><?php echo $result->State;?></td>
+        		              <td><?php echo $result->Zip?></td>
+        		              <td>
+        		                  <div class="buttons">
+							         <a style="float:right" href="/well/search/import/record_id/<?php echo $result->Record_Id?>" class="button left" title="Import"><span class="icon icon145"></span></a>
+							     </div>
+        		              </td>
+        		              
+        		          </tr>
+        		          <?php $i++; ?>
+        		      <?php } ?>
+        		      </table>
+        		  </div>
+        	</div>
+		    <?php }?>
+		    
+</div>

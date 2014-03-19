@@ -1,0 +1,24 @@
+<script src="/js/ajax/address.js" type="text/javascript"></script>
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+
+		<h2>Add Location to Owner <?php echo $this->owner->name;?></h2>
+		<div class="block">
+			<form method="post" action="">
+				<div class="grid_2 pad_4"><b>Address Search:</b></div>
+					<div class="grid_6 pad_4">
+						<input type="text" name="address" id="address" value="" class="medium" maxlength="300" tabindex="1" autocomplete="off" />
+						<div class="addressAutoComplete auto"><ul></ul></div>
+					</div>
+					<div class="clear"></div>
+					<div class="grid_4">
+						<?php echo $this->form->getElement('submit');?>
+						<?php echo $this->form->getElement('no_csrf');?>
+						<input type="hidden" name="locationId" id="locationId" value="" />
+					</div>
+					<div class="clear"></div>
+			</form>
+		</div>
+	</div>
+</div>

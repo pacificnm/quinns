@@ -1,0 +1,71 @@
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>View Pump <?php echo $this->pump->pump_model;?> at Location <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->msg == 'edit-ok') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump information was Successfuly updated.</p>
+               </div>
+			<?php }?>
+			<?php if($this->msg == 'pump-add') {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Pump information was Successfuly added.</p>
+               </div>
+			<?php }?>
+		
+			<h6>Pump Information</h6>
+			<div class="grid_3 pad_4"><b>Model:</b> <?php echo $this->pump->pump_model;?></div>
+			<div class="grid_3 pad_4"><b>Type:</b> <?php echo $this->pump->pump_type;?></div>
+			<div class="grid_3 pad_4"><b>Well Depth:</b> <?php echo $this->pump->well_depth;?> feet</div>
+			<div class="grid_3 pad_4"><b>Pump Depth:</b> <?php echo $this->pump->pump_depth;?> feet</div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Voltage:</b> <?php echo $this->pump->voltage;?> v</div>
+			<div class="grid_3 pad_4"><b>Phase:</b> <?php echo $this->pump->phase;?></div>
+			<div class="grid_3 pad_4"><b>Wire:</b> <?php echo $this->pump->wire;?></div>
+			<div class="grid_3 pad_4"><b>Static Level:</b> <?php echo $this->pump->static_level;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Pipe:</b> <?php echo $this->pump->pipe;?></div>
+			<div class="grid_3 pad_4"><b>Pipe Size:</b> <?php echo $this->pump->pipe_size;?></div>
+			<div class="grid_3 pad_4"><b>Yield:</b> <?php echo $this->pump->yield;?> GPM</div>
+			<div class="grid_3 pad_4"><b>Last Update:</b> <?php echo date("m/d/Y", strtotime($this->pump->update));?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Well Tag:</b> <?php echo $this->pump->pump_tag;?></div>
+			<div class="grid_3 pad_4"><b>Well Use:</b> <?php echo $this->pump->use;?></div>
+			<div class="clear"></div>
+			<br />
+			
+			<h6>Tank Infromation</h6>
+			<div class="grid_3 pad_4"><b>Tank Size:</b> <?php echo $this->tank->size;?></div>
+			<div class="grid_3 pad_4"><b>Make &nbsp; Model:</b> <?php echo $this->tank->model;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_3 pad_4"><b>Tank Type:</b> <?php echo $this->tank->type;?></div>
+			<div class="grid_3 pad_4"><b>Filtration:</b> <?php echo $this->tank->filtration;?></div>
+			<div class="clear"></div>
+ 			<br />
+				
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/pump/edit/index/id/<?php echo $this->pump->id;?>" class="button middle" title="Edit Pump"><span class="icon icon145"></span></a>
+				<?php if($this->pumpTestCount > 0){?>
+					<a href="/pump-test/view/all/id/<?php echo $this->location->id;?>" class="button middle" title="View Pump Test"><span class="icon icon138"></span><span class="label">View Pump Tests</span></a>
+				<?php }?>
+				<a href="/pump-test/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="Add Pump Test"><span class="icon icon138"></span><span class="label">New Pump Test</span></a>
+							
+			</div>
+			<div class="clear"></div>		
+		</div>
+	</div>
+</div>
+
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

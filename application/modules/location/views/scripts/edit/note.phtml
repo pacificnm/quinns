@@ -1,0 +1,57 @@
+
+
+<?php echo $this->MainNav();?>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Edit Location Note for <?php echo $this->location->street;?></h2>
+		<div class="block">
+			<?php if($this->form->getMessages()) {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>This is an error message.</p>
+                </div>
+			<?php }?>
+			<?php if($this->save) {?>
+				<div class="message success">
+                	<h5>Success!</h5>
+                    <p>The Location Information was saved.</p>
+                </div>
+			<?php }?>
+			<form method="post" action="">
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('access');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('boom_truck');?></div>
+				<div class="grid_2 pad_4"><?php echo $this->form->getElement('dog');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('directions');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('note');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_3 pad_4"><?php echo $this->form->getElement('men');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_10 pad_4"><?php echo $this->form->getElement('explanation');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_4 pad_4">
+					<?php echo $this->form->getElement('no_csrf');?>
+					<?php echo $this->form->getElement('submit');?>
+				</div>
+				<div class="clear"></div>
+			</form>
+			
+			<br />
+			<div class="buttons">
+				<a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				<a href="/location/view/note/id/<?php echo $this->location->id;?>" class="button middle" title="Back to Location Notes"><span class="icon icon137"></span></a>
+					
+			</div>		
+		</div>
+	</div>
+</div>
+<div class="grid_3">
+	<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

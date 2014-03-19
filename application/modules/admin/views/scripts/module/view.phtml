@@ -1,0 +1,42 @@
+<?php echo $this->AdminNav();?>
+<div class="grid_12">
+	<div class="box round first fullpage">
+		<h2>Module <?php echo $this->module->name; ?></h2>
+		<div class="block">
+			<p>
+				<b>Name:</b> <?php echo $this->module->name;?><br />
+				<b>Status:</b> <?php echo $this->module->status;?>
+			</p>
+			<table class="data display">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Controller Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $i = 0;?>
+					<?php foreach($this->controllers as $controller) {?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<td><?php echo $controller->controller_id;?></td>
+						<td><a href="/admin/module/controller/id/<?php echo $controller->controller_id;?>"><?php echo $controller->name;?></a></td>
+						<td>
+							<a style="float:right" href="/admin/module/edit-controller/id/<?php echo $controller->controller_id?>" class="button left" title="Edit Controller"><span class="icon icon145"></span></a><br />
+						
+						</td>
+					</tr>
+					<?php $i++; ?>
+					<?php }?>
+				</tbody>
+			</table>
+			<div class="clear"></div>
+				<div class="buttons">
+					<a href="/admin/index/" class="button left" title="Admin Home"><span class="icon icon108"></span></a>
+					<a href="/admin/module" class="button left" title="Module Home"><span class="icon icon53"></span></a>
+					<a href="/admin/module/add-controller/id/<?php echo $this->module->module_id?>" class="button left" title="Add Controller"><span class="icon icon3"></span></a><br />
+				
+				</div>
+		</div>
+	</div>
+</div>

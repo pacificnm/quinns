@@ -1,0 +1,19 @@
+<?php 
+class Auth_Form_Element_Username extends Zend_Form_Element_Text
+{
+	public function init()
+	{
+		$this->setLabel('Email:')
+			->setRequired(true);
+		
+		$this->setDecorators(array(
+				'ViewHelper',
+				'Description',
+				array('HtmlTag', array('tag' => 'div')),
+				array('Label', array('tag' => 'div')),
+		));
+		
+		$this->addValidator('NotEmpty', false, array('messages' =>
+				array('isEmpty' => '<b>Email</b> is required!')));
+	}
+}
