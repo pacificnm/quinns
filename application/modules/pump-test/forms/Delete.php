@@ -42,7 +42,11 @@ class PumpTest_Form_Delete extends Zend_Form
 
     public function init()
     {
-        /* Form Elements & Other Definitions Here ... */
+        $this->addElement('hash', 'no_csrf', array('salt' => 'unique'));
+         
+        $this->addElement(new Application_Form_Element_Delete('submit'));
+        
+        return $this;
     }
 
 

@@ -77,6 +77,22 @@
 			<div id="chart2" class="grid_12"></div>
 			<div class="clear"></div>
 			<br />
+			
+			
+			
+			<?php if(count($this->pumpFlow) == 0 ):?>
+			
+			<div class="message error">
+                	<h5>Error!</h5>
+                    <p>
+                        There is no Flow data for this pump test. Please enter flow data
+                    </p>
+            </div>
+			
+			<?php echo $this->form;?>
+			
+			<?php else :?>
+			
 			<h6>Test Data:</h6>
 			
 			<div class="grid_2 pad_4"><b>Time</b></div>
@@ -84,6 +100,7 @@
 			<div class="grid_2 pad_4"><b>Level</b></div>
 			<div class="grid_2 pad_4"><b>Meter</b></div>
 			<div class="clear"></div>
+			
 			<?php $meter = 0;?>
 			<?php $count = 0;?>
 			<?php $flowAverage = 0;?>
@@ -115,7 +132,9 @@
 			<div class="clear"></div>
 			<div class="buttons">
 				<a href="/pump-test/edit/flow/id/<?php echo $this->pumpTest->id;?>" class="button middle" title="Edit Pump Flow Data"><span class="icon icon145"></span></a>								
-			</div>		
+			</div>	
+			<?php endif;?>
+				
 		</div>
 	</div>
 </div>

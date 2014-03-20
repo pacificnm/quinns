@@ -103,11 +103,20 @@ class PumpTest_Form_Edit extends Zend_Form
     	$this->addElement($element);
     	 
     	$ownerModel = new Owner_Model_Owner();
-    	$owner = $ownerModel->loadById($pumpTest->owner);
     	
-    	$element = new PumpTest_Form_Element_Owner('owner');
-    	$element->setValue($owner->name);
-    	$this->addElement($element);
+    	
+    	if($pumpTest->owner) {
+    	    $owner = $ownerModel->loadById($pumpTest->owner);
+    	    $element = new PumpTest_Form_Element_Owner('owner');
+    	    $element->setValue($owner->name);
+    	    $this->addElement($element);
+    	} else {
+    	    $element = new PumpTest_Form_Element_Owner('owner');
+    	    $this->addElement($element);
+    	    
+    	}
+    	
+    	
     	 
     	$element = new PumpTest_Form_Element_Date('date');
     	$element->setValue(date("M d, Y", $pumpTest->date));

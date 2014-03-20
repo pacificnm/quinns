@@ -206,6 +206,18 @@ class PumpTest_Model_PumpTest
 	}
 	
 	/**
+	 * 
+	 * @param unknown $pumptestId
+	 */
+	public function delete($pumptestId)
+	{
+	    
+	    $where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $pumptestId);
+	    
+	    $this->getTable()->delete($where);
+	}
+	
+	/**
 	 *
 	 */
 	public function getTable()

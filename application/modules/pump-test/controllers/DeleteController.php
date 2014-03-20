@@ -26,7 +26,7 @@ class PumpTest_DeleteController extends Zend_Controller_Action
      */
     public function indexAction()
     {
-    	$id = (int)$this->getParam('id');
+    	$id = $this->getParam('id');
     	
     	// load pump test
     	$pumpTestModel = new PumpTest_Model_PumpTest();
@@ -44,6 +44,13 @@ class PumpTest_DeleteController extends Zend_Controller_Action
     	if ($this->getRequest()->isPost()) {
     		if ($form->isValid($this->getRequest()->getPost())) {
     			
+    		    $PumpTestModelPumpFlow = new PumpTest_Model_PumpFlow();
+    		    
+    		    $pumpTestModel->delete($id);
+    		    
+    		    $PumpTestModelPumpFlow->delete($id);
+    		    
+    		    $this->redirect('/location/view/index/id/' . $id .'/msg/location-edit');
     		}
     	}
     	

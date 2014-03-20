@@ -127,6 +127,18 @@ class PumpTest_Form_Add extends Zend_Form
     	
     	return $this;
     }
+    
+    public function flow()
+    {
+        
+        $this->addElement(new PumpTest_Form_Element_StartTime('start_time'));
+        
+        $this->addElement('hash', 'no_csrf', array('salt' => 'unique'));
+         
+        $this->addElement(new Application_Form_Element_Submit('submit'));
+         
+        return $this;
+    }
 
     /**
      * 

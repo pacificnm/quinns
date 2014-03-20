@@ -29,6 +29,18 @@ class PumpTest_ViewController extends Zend_Controller_Action
         $pumpFlow = $pumpFlowModel->loadByTest($pumpTest->id);
         $this->view->pumpFlow = $pumpFlow;
         
+        
+        if(count($pumpFlow) == 0) {
+            $formModel = new PumpTest_Form_Add();
+            $this->view->form = $formModel->flow($id);
+            
+            if ($this->getRequest()->isPost()) {
+                $startTime = $this->getParam('start_time');
+                $this->redirect('/pump-test/add/data/id/' .$id.'/start/'.$startTime);
+            }
+        }
+        
+        
         $this->view->msg = $this->getParam('msg');
        
     }

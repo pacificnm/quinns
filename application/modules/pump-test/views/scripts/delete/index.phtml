@@ -19,9 +19,21 @@
                     </p>
                 </div>
 			<?php } ?>
-			<form method="post" action="">
+			<div class="message warning">
 			
-			</form>
+			<p>Are you sure you want to delete the pump test entered on <?php echo date("m-d-y", $this->pumpTest->date)?> 
+			</div>
+			
+			<?php echo $this->form;?>
+			<div class="buttons">
+			 <a href="/location/view/index/id/<?php echo $this->location->id;?>" class="button left" title="Back to Location"><span class="icon icon108"></span></a>
+				
+			</div>
 		</div>
 	</div>
 </div>
+<div class="grid_3">
+<?php echo $this->ServiceDue($this->location->id);?>
+<?php echo $this->recent($this->location->id);?>
+</div>
+<div class="clear"></div>

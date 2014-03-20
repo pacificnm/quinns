@@ -71,15 +71,25 @@ class PumpTest_AddController extends Zend_Controller_Action
     			// find ownerid
     			$ownerModel = new Owner_Model_Owner();
     			$owner = $ownerModel->loadByName($owner);
-    			$ownerId = $owner->id;
     			
-    			// create test
-    			$pumpTestModel = new PumpTest_Model_PumpTest();
-    			$pumpTestId = $pumpTestModel->create($id,$ownerId,$requirements,$source,$depth,$diameter, 
-    					$equipment,$level,$vent,$seal,$popOffValve,$color,$taste,$odor,$employee,$remarks,$date);
-    			
-    			$this->redirect('/pump-test/add/data/id/' .$pumpTestId.'/start/'.$startTime);
-    			
+    			if(count($owner) === 0 ) {
+    			        			    
+    			    $form->getElement("owner")->setErrors(array("<b>Missing Owner</b>. Please Enter a valid Owner Name and <b>CLICK ON THE NAME</b> from the list. If you do not see the Owner in the list then you must go back and create it first."));
+    			    
+    			    $form->highlightErrorElements();
+    			    
+    			    $this->view->form = $form;
+    			    
+    			} else {
+    			    $ownerId = $owner->id;
+    			    
+        			// create test
+        			$pumpTestModel = new PumpTest_Model_PumpTest();
+        			$pumpTestId = $pumpTestModel->create($id,$ownerId,$requirements,$source,$depth,$diameter, 
+        					$equipment,$level,$vent,$seal,$popOffValve,$color,$taste,$odor,$employee,$remarks,$date);
+        			
+        			$this->redirect('/pump-test/add/data/id/' .$pumpTestId.'/start/'.$startTime);
+    			}
     		} else {
     			$form->highlightErrorElements();
     		}
