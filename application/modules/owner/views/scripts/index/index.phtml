@@ -2,30 +2,88 @@
 <?php echo $this->MainNav();?>
 <div class="grid_13">
 	<div class="box round first fullpage">
-		<h2>Owners</h2>
+		<h2>Contacts</h2>
 		<div class="block">
 		
 			<div class="SearchPanel">
-				<div class="grid_8 pad_4">Enter a name to search. Results will be displayed in the Selection box</div>
+				<div class="grid_8 pad_4">Enter a name to search.</div>
 				<div class="clear"></div>
 				
-				<form action="/owner/index" class="searchForm" accept-charset="utf-8" method="post">
-					<div class="grid_6 pad_4">
-						<b>Name:</b> <input type="text" name="owner" id="owner" value="" class="medium" maxlength="300" tabindex="1" autocomplete="off" />
-						<input type="submit" name="search" value="Search" class=""/>
+				<form class="searchForm" accept-charset="utf-8" method="post">
+					<div class="grid_10 pad_4">
+						<b>Name:</b> <input type="text" name="owner" id="owner" value="<?php echo $this->keyword;?>" class="medium" maxlength="300" tabindex="1" autocomplete="off" />
+						<input type="submit" name="search" id="search" value="Search" class=""/>
+						<input type="button" name="create" value="Create New" onclick="window.location.href='/owner/add/index/<?php if($this->location):?>location_id/<?php echo $this->location->id;?>/<?php endif;?>name/'+ document.getElementById('owner').value;"/>
+						
 						<div class="ownerAutoComplete auto"><ul></ul></div>
 					</div>
 					<div class="clear"></div>
-					<div class="buttons">
-						
-					</div>
-					
 				</form>
 			</div>
 			<div class="clear"></div>
-			
+			<?php if($this->location):?>
+			<p>Search for Contact to add to location <b><?php echo $this->location->street;?> <?php echo $this->location->city; ?>, <?php echo $this->location->state; ?> <?php echo $this->location->zip; ?></b></p>
+			<?php endif;?>
 		</div>
 	</div>
+	
+	<!--  results -->
+	<div class="box round first fullpage">
+ 		<h2>Found the following Contacts</h2>
+	<?php if(count($this->owners) > 0 ):?>
+	
+        <div class="block">
+        	<table class="data display ">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Phone</th>
+						<?php if($this->location):?>
+						<th>Type</th>
+						<th>Add</th>
+						<?php endif;?>
+					</tr>
+				</thead>
+				<tbody>
+				<?php $i = 0;?>
+				<?php foreach($this->owners as $owner) :?>
+					<?php if (0 == $i % 2) { ?><tr class="odd"><?php } else {?><tr class="even"><?php }?>
+						<form method="post" action="/owner/add/location/" id="owner_location_<?php echo $i?>">
+						<td><?php echo $owner->id; ?></td>
+						<td><a href="/owner/view/index/id/<?php echo $owner->id;?>" title="View Owner <?php echo $owner->name; ?>"><?php echo $owner->name; ?></a></td>
+						<td><?php echo $owner->phone; ?></td>
+						<?php if($this->location):?>
+						<td>
+							<select name="owner_type" id="owner_type">
+								<option value="Owner">Owner</option>
+								<option value="Renter">Renter</option>
+								<option value="Realtor">Realtor</option>
+							</select>
+						</td>
+						<td>
+							<input type="hidden" name="owner_id" id="owner_id" value="<?php echo $owner->id; ?>" />
+							<input type="hidden" name="location_id" id="location_id" value="<?php echo $this->location->id; ?>" />
+							<input type="submit" value="Add" />
+						</td>
+						<?php endif;?>
+						</form> 
+					</tr>
+				<?php endforeach;?>
+				</tbody>
+			</table>
+		</div>
+    
+    <?php else:?>
+    
+        <div class="block">
+        	<p>No Contacts Found</p>
+        </div>
+
+    <?php endif;?>
+    
+    </div>
+    	
 </div>
 <div class="grid_3">
 

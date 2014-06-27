@@ -38,42 +38,41 @@
 			<?php }?>
 				<div class="grid_6 pad_4">
 					<h6>Location Details</h6>
-					<div class="grid_3 pad_4"><b>Street:</b> <?php echo $this->location->street;?></div>
-					<div class="grid_2 pad_4"><b>City:</b> <?php echo $this->location->city;?></div>
+					<div class="grid_3 pad_4"><b><?php echo $this->location->street;?></b></div>
+					<div class="grid_2 pad_4"><b>Service Date:</b> </div>
 					<div class="clear"></div>
 					
 					<div class="grid_3 pad_4"><b>Street2:</b> <?php echo $this->location->street2;?></div>
-					<div class="grid_2 pad_4"><b>State:</b> <?php echo $this->location->state;?></div>
+					<div class="grid_2 pad_4">
+						<?php if(!empty($this->schedule)) { ?>
+							<a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Edit Service Date"><?php if($this->schedule->service_due < time()) {echo '<span style="color:red">';} ?><?php echo date("m/d/Y", $this->schedule->service_due);?><?php if($this->schedule->service_due < time()) { echo '</span>';} ?></a>
+						<?php } else { ?>
+							<a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Create Service Date">Create</a>
+						<?php }?>
+					
+					</div>
 					<div class="clear"></div>
 						
-					<div class="grid_3 pad_4"><b>Updated:</b> <?php echo date("m/d/Y H:s",strtotime($this->location->update));?></div>	
-					<div class="grid_2 pad_4"><b>Zip:</b> <?php echo $this->location->zip;?></div>
+					<div class="grid_3 pad_4"><?php echo $this->location->city;?>, <?php echo $this->location->state;?> <?php echo $this->location->zip;?></div>	
+					<div class="grid_2 pad_4"></div>
 					<div class="clear"></div>			
 				</div>
 				
 				<div class="grid_6 pad_4">
-					<h6>Owner Details</h6>
-				<?php if(count($this->owners) < 1) {?>
-					<div class="grid_5 pad_4">
-						<a href="/owner/add/index/id/<?php echo $this->location->id;?>" title="">Add Owner</a>
-					</div> 
-					<div class="clear"></div>
-				<?php } else {?>
-					<?php foreach($this->owners as $owners) { ?>
-					<div class="grid_5 pad_4">
-							<a href="/owner/view/index/id/<?php echo $owners->owner_id;?>" <?php if($owners->status == 0){ echo 'style="color:red"';}?>><?php echo $owners->name;?></a> <?php echo $owners->phone?>
-						
-						</div> 
-					<div class="clear"></div>
-					<?php }?>
-				<?php }?>
-					<div class="grid_3 pad_4"><b>Service Date:</b> 
-						<?php if(!empty($this->schedule)) { ?>
-						<a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Edit Service Date"><?php if($this->schedule->service_due < time()) {echo '<span style="color:red">';} ?><?php echo date("m/d/Y", $this->schedule->service_due);?><?php if($this->schedule->service_due < time()) { echo '</span>';} ?></a>
-						<?php } else { ?>
-							<br><a href="/location/edit/service/id/<?php echo $this->location->id;?>" title="Create Service Date">Create Service Date</a>
-						<?php }?>
-					</div>
+					<h6>Contact Details</h6>
+				
+					<?php foreach($this->owners as $owners) : ?>
+					<?php if($owners->status == 1) :?>
+						<div class="grid_5 pad_4">
+								<?php echo $owners->owner_type; ?>
+								<a href="/owner/view/index/id/<?php echo $owners->owner_id;?>"><?php echo $owners->name;?></a> 
+								<?php echo $owners->phone?>
+									
+							</div> 
+						<div class="clear"></div>
+						<?php endif;?>
+					<?php endforeach;?>
+					<a href="/owner/index/index/location_id/<?php echo $this->location->id;?>" title="Add Contact To This Location">Add Contact</a>
 				</div>
 				<div class="clear"></div>
 				

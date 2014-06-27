@@ -19,9 +19,9 @@ class Owner_Model_Owner
 		$select = $this->getTable()->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
 		->setIntegrityCheck(false);
 		
-		$select->where('name LIKE ?', $name);
+		$select->where('name LIKE ?', $name . '%')->limit(25);
 		
-		$rowSet = $this->getTable()->fetchRow($select);
+		$rowSet = $this->getTable()->fetchAll($select);
 		
 		return $rowSet;
 	}
@@ -106,6 +106,7 @@ class Owner_Model_Owner
 				'email' => $email,
 				'status' => $status,
 				'old_id' => $oldId,
+				
 				);
 		
 		try{

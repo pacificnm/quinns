@@ -21,6 +21,7 @@
  */
 class Location_Model_Location
 {
+	const LOCATION_ID = 'location_id';
 
     /**
      *

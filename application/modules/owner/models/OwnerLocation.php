@@ -132,11 +132,12 @@ class Owner_Model_OwnerLocation
 	 * @param unknown $owner
 	 * @return mixed
 	 */
-	public function create($location,$owner,$status)
+	public function create($location,$owner,$ownerType, $status)
 	{
 		$data = array(
 				'location' => $location,
 				'owner' => $owner,
+				'owner_type' => $ownerType,
 				'status' => $status
 				);
 				
@@ -173,6 +174,24 @@ class Owner_Model_OwnerLocation
 	
 	
 		$this->getTable()->update($data, $where);
+	}
+	
+	public function update($id, $ownerType, $status) {
+		$data = array(
+			'owner_type' => $ownerType,
+			'status' => $status
+		);
+		
+		$where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $id);
+		
+		$this->getTable()->update($data, $where);
+	}
+	
+	public function delete($id){
+		
+		$where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $id);
+		
+		$this->getTable()->delete($where);
 	}
 	
 	/**

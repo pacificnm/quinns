@@ -18,6 +18,9 @@ class Owner_ViewController extends Zend_Controller_Action
         
         $ownerModel = new Owner_Model_Owner();
         $owner = $ownerModel->loadById($id);
+        
+        
+        
         $this->view->owner = $owner;
         
         if(empty($owner)) {

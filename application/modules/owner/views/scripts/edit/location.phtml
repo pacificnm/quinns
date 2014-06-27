@@ -2,20 +2,11 @@
 <div class="grid_13">
 	<div class="box round first fullpage">
 
-		<h2>Set  Owner <?php echo $this->owner->name;?> from Location <?php echo $this->location->street;?> to Inactive</h2>
+		<h2>Edit  Contact <?php echo $this->owner->name;?> at Location <?php echo $this->location->street;?></h2>
 		<div class="block">
-			<div class="message info">
-                	<h5>Information!</h5>
-                    <p>This will set the owner <?php echo $this->owner->name;?> to <b><?php echo $this->status;?></b> status on the location <?php echo $this->location->street;?>.</p>
-               </div>
-			<form action="" method="post">
-				<div class="grid_4 pad_4">
-					<?php echo $this->form->getElement('no_csrf');?>
-					<?php echo $this->form->getElement('submit');?>
-				</div>
-				<div class="clear"></div>
-			</form>
-			<br />
+			<?php echo $this->form;?>
+			
+			
 		</div>
 	</div>
 </div>

@@ -86,32 +86,24 @@ class Owner_Form_Edit extends Zend_Form
     	return $this;
     }
     
-    public function location()
+    public function location($data)
     {
-    	$this->addElement(new Owner_Form_Element_Inactive('submit'));
+    	$element = new Owner_Form_Element_Type('owner_type');
+    	$element->setValue($data->owner_type);
+    	$this->addElement($element);
+    	
+    	$element = new Owner_Form_Element_Status('status');
+    	$element->setValue($data->status);
+    	$this->addElement($element);
+    	
+    	$this->addElement(new Application_Form_Element_Submit('submit'));
     	
     	$this->addElement('hash', 'no_csrf', array('salt' => 'unique', 'timeout' => 3600));
     	
     	return $this;
     }
     
-    public function inactive()
-    {
-    	$this->addElement(new Owner_Form_Element_Inactive('submit'));
-    	 
-    	$this->addElement('hash', 'no_csrf', array('salt' => 'unique', 'timeout' => 3600));
-    	 
-    	return $this;
-    }
     
-    public function active()
-    {
-    	$this->addElement(new Owner_Form_Element_Active('submit'));
-    	 
-    	$this->addElement('hash', 'no_csrf', array('salt' => 'unique', 'timeout' => 3600));
-    	 
-    	return $this;
-    }
 
 }
 

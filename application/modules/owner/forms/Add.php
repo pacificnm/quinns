@@ -86,6 +86,7 @@ class Owner_Form_Add extends Zend_Form
     	$element->setValue($zip);
     	$this->addElement($element);
     	 
+    	$this->addElement(new Owner_Form_Element_Type('owner_type'));
     	
     	$this->addElement('hash', 'no_csrf', array('salt' => 'unique', 'timeout' => 3600));
     	 

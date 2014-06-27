@@ -76,6 +76,7 @@ class Owner_EditController extends Zend_Controller_Action
     	
     	$ownerModel = new Owner_Model_Owner();
     	$ownerLocationModel = new Owner_Model_OwnerLocation();
+    	$locationModel = new Location_Model_Location();
     	
     	$owner = $ownerModel->loadById($ownerId);
     	if(empty($owner)) {
@@ -83,38 +84,38 @@ class Owner_EditController extends Zend_Controller_Action
     	}
     	$this->view->owner = $owner;
     	
-    	$location = $ownerLocationModel->loadSingleLocationByOwner($ownerId);
-    	if(empty($location)) {
+    	$data = $ownerLocationModel->loadByOwnerLocation($locationId, $ownerId);
+    	if(empty($data)) {
     		$this->redirect('/owner/edit/error/msg/no-location');
     	}
+    	
+    	$location = $locationModel->loadById($locationId);
     	$this->view->location = $location;
-    	
-    	
-    	$status = $this->getParam('status');
-    	$this->view->status = $status;
-    	
+
     	$formModel = new Owner_Form_Edit();
-    	
-    	if($status == 'inactive') {
-    		$form = $formModel->inactive();
-    	} else {
-    		$form = $formModel->active();
-    	}
+    	$form = $formModel->location($data);
     	
     	if ($this->getRequest()->isPost()) {
     		if ($form->isValid($this->getRequest()->getPost())) {
     			
-    			if($status == 'inactive') {
-    				$ownerLocationModel->setInactive($ownerId, $locationId);
+    			$status = $this->getParam('status');
+    			$ownerType = $this->getParam('owner_type');
+    			
+    			// if we delete
+    			if($status == 2) {
+    				$ownerLocationModel->delete($data->id);
+    				$this->redirect('/owner/view/index/id/' . $ownerId);
     			} else {
-    				$ownerLocationModel->setActive($ownerId, $locationId);
+    				$ownerLocationModel->update($data->id, $ownerType, $status);
+    				$this->redirect('/owner/view/index/id/' . $ownerId);
     			}
-    			$this->redirect('/owner/view/index/id/' . $ownerId.'/msg/edit-inactive');
     		}
     	}
     	
     	$this->view->form = $form;
     }
+    
+    
     
 	/**
 	 * 
