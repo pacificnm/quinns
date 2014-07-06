@@ -80,7 +80,7 @@ class Service_Model_Pdf extends Zend_Pdf
 		// Scheduled Service
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
 		$page->setFont($font, 11);
-		$page->drawText('Service Date:', 10, $startLine, 'UTF-8');
+		$page->drawText('Scheduled:', 10, $startLine, 'UTF-8');
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 11);
 		$page->drawText(date("M d, Y",$service->date), 95, $startLine, 'UTF-8');
