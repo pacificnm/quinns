@@ -28,8 +28,6 @@ class Service_ViewController extends Zend_Controller_Action
     {
     	$id = $this->getParam('id');
     	
-    	
-    	
     	// load service
     	$serviceModel = new Service_Model_Service();
     	$service = $serviceModel->loadById($id);
@@ -39,6 +37,13 @@ class Service_ViewController extends Zend_Controller_Action
     	$locationModel = new Location_Model_Location();
     	$location = $locationModel->loadById($service->location);
     	$this->view->location = $location;
+    	
+    	// load owners
+    	$ownerModel = new Owner_Model_OwnerLocation();
+    	$owners = $ownerModel->loadAllOwnerByLocation($service->location);
+    	$this->view->owners = $owners;
+    	
+    	
     	
     	$this->view->msg = $this->getParam('msg');
     	

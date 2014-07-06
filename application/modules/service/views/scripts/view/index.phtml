@@ -49,7 +49,10 @@
 			<div class="clear"></div>
 			
 			<div class="grid_8 pad_4">
-				<b>Contacts:</b>
+				<b>Contacts:</b><br />
+				<?php foreach($this->owners as $owner):?>
+				&nbsp;&nbsp;<b><?php echo $owner->owner_type;?></b> - <?php echo $owner->name; ?> <b>Phone: </b><?php echo $owner->phone;?><br />
+				<?php endforeach;?>
 			</div>
 			<div class="clear"></div>
 			
