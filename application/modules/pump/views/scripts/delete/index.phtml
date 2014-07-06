@@ -1,10 +1,14 @@
 <?php echo $this->MainNav();?>
-				<div class="grid_13">
-					<div class="box round first fullpage">
-					<h2>Index</h2>
-					<div class="block">
-						
-					</div>
-				</div>
-			</div>
-			<div class="clear"></div>
+<div class="grid_13">
+	<div class="box round first fullpage">
+		<h2>Delete Pump</h2>
+		<div class="block">
+		  <p>Are you sure you want to delete <?php echo $this->pump->pump_model; ?> from location <?php echo $this->location->street;?>?<br />
+		  
+		  This action can not be undone.
+		  </p>
+		  <?php echo $this->form;?>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>

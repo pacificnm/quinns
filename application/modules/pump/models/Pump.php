@@ -180,6 +180,14 @@ class Pump_Model_Pump
 		$this->getTable()->update($data, $where);
 	}
 	
+	public function delete($pumpId)
+	{
+	    $adapter = $this->getTable()->getDefaultAdapter();
+	    
+	    $where = $adapter->quoteInto('id = ?', $pumpId);
+	    
+	    $this->getTable()->delete($where);
+	}
 	
 	/**
 	 *

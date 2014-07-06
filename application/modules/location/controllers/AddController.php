@@ -186,6 +186,18 @@ class Location_AddController extends Zend_Controller_Action
     		
     	}
     }
+    
+    
+    public function importAction()
+    {
+        
+        $LocationModelLocation = new Location_Model_Location();
+        $locations = $LocationModelLocation->loadEmptyLat();
+        
+        foreach($locations as $location) {
+            
+        }
+    }
 
 }
 

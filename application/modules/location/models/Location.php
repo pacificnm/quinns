@@ -90,6 +90,19 @@ class Location_Model_Location
         return $rowSet;
     }
 
+    public function loadEmptyLat()
+    {
+        $select = $this->getTable()
+        ->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
+        ->setIntegrityCheck(false);
+        
+        $select->where('lat = ?', 'NULL')->limit(10);
+        
+        $rowSet = $this->getTable()->fetchAll($select);
+        
+        return $rowSet;
+    }
+    
     /**
      * Paganated Page to browse locations by
      *
