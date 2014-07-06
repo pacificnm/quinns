@@ -849,7 +849,9 @@ class Service_Model_Pdf extends Zend_Pdf
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 9);
 		$page->drawText('Page  '. $pageNum . ' Created ' . date("M d, Y", $service->date_created), 265, 18);
-		$pdf->pages[] = $page;
+		if(count($oldServices) > 0) {
+		  $pdf->pages[] = $page;
+		}
 		
 		
 		

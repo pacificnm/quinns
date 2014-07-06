@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('<button id="new_location">New Location</button>').appendTo('div.dataTables_length');
 
     $("#new_location").click(function () {
-    	window.location.href = "/location/add/index";
+    	window.location.href = "/location/add/index/street/" + $('div.dataTables_filter input').val();
     });
     
 } );

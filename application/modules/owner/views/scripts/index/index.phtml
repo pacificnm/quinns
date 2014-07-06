@@ -12,7 +12,14 @@ $(document).ready(function() {
         "serverSide": true,
         "ajax": "/owner/json/browse/location_id/<?php echo $this->locationId?>"
     } );
-    
+
+    $('<button id="new_location">New Contact</button>').appendTo('div.dataTables_length');
+
+    <?php if($this->locationId): ?>
+    $("#new_location").click(function () {
+    	window.location.href = "/owner/add/index/location_id/<?php echo $this->locationId; ?>/name/" + $('div.dataTables_filter input').val();
+    });
+    <?php endif; ?>
 } );
 <?php if($this->locationId):?>
 
