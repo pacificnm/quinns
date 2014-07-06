@@ -674,7 +674,7 @@ class Service_Model_Pdf extends Zend_Pdf
 		// page number and date 
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 9);
-		$page->drawText('Page ' . $pageNum . ' ' . date("M d, Y", time()), 265, 18);
+		$page->drawText('Page ' . $pageNum . ' ' . date("M d, Y", $service->created), 265, 18);
 		$pdf->pages[] = $page;
 		
 		
@@ -848,7 +848,7 @@ class Service_Model_Pdf extends Zend_Pdf
 		
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 9);
-		$page->drawText('Page  '. $pageNum . ' ' . date("M d, Y", time()), 265, 18);
+		$page->drawText('Page  '. $pageNum . ' ' . date("M d, Y", $service->created), 265, 18);
 		$pdf->pages[] = $page;
 		
 		
@@ -1103,7 +1103,7 @@ class Service_Model_Pdf extends Zend_Pdf
 					
 					$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 					$page->setFont($font, 9);
-					$page->drawText('Page  '. $pageNum . ' ' . date("M d, Y", time()), 265, 18);
+					$page->drawText('Page  '. $pageNum . ' ' . date("M d, Y", $service->created), 265, 18);
 					$pdf->pages[] = $page;
 					
 				}
