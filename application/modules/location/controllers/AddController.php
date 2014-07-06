@@ -83,7 +83,7 @@ class Location_AddController extends Zend_Controller_Action
     			$serviceDue = strtotime('+1 month', time());
     			$scheduleModel->create($locationId, $serviceDue);
     			
-    			$this->redirect('/owner/add/index/id/'.$locationId.'/well-log/'.$wellLog->id.'/msg/location-add');
+    			$this->redirect('/owner/add/index/location_id/'.$locationId.'/well-log/'.$wellLog->id.'/msg/location-add');
     			
     		} else {
     			$form->highlightErrorElements();

@@ -62,10 +62,11 @@ class Service_AddController extends Zend_Controller_Action
     			// start time
     			$startHour = $this->getParam('startHour');
     			if($startHour == 0 && $this->getParam('startMin') == 0) {
-    			    $startHour = 0;
+    			    $startTime = 0;
     			} else {
     			    if($this->getParam('startAmpm') == 'PM' && $startHour < 12) {
     			        $startHour = $startHour + 12;
+    			        
     			    }
     			    $startTime = mktime($startHour, $this->getParam('startMin'), 0, date("m", $date), date("d", $date), date("Y",$date));
     			}
@@ -102,7 +103,7 @@ class Service_AddController extends Zend_Controller_Action
     			$serviceModel = new Service_Model_Service();
     	
     			$id = $serviceModel->create($id,$ownerId,$employee,$date,$description,
-    			        $complaint,$directions,$status,$flowTest,$pump,$create,0,$startTimeStamp,$endTimeStamp);
+    			        $complaint,$directions,$status,$flowTest,$pump,$create,0,$startTime,$endTime);
     			
     			$changeLogModule = new ChangeLog_Model_ChangeLog();
     			$changeLogModule->create('service',$id, 'Created	 Service');

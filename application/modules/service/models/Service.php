@@ -186,7 +186,6 @@ class Service_Model_Service
 		        'start_time' => $startTime,
 		        'end_time' => $endTime
 				);
-
 		try{
 		  $id = $this->getTable()->insert($data);
 		
