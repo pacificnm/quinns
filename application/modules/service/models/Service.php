@@ -184,7 +184,8 @@ class Service_Model_Service
 				'status' => $status,
 				'flow_test' => $flowTest,
 		        'start_time' => $startTime,
-		        'end_time' => $endTime
+		        'end_time' => $endTime,
+		        'date_created' => time(),
 				);
 		try{
 		  $id = $this->getTable()->insert($data);

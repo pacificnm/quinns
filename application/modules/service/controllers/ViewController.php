@@ -70,7 +70,7 @@ class Service_ViewController extends Zend_Controller_Action
     	// load service
     	$serviceModel = new Service_Model_Service();
     	$service = $serviceModel->loadById($id);
-    	
+    	    	
     	// load location
     	$locationModel = new Location_Model_Location();
     	$location = $locationModel->loadById($service->location);
