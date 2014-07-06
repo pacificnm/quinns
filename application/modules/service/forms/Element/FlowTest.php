@@ -6,8 +6,8 @@ class Service_Form_Element_FlowTest extends Zend_Form_Element_Select
 	{
 		$this->setLabel('Include Flow Test:');
 
-		$this->addMultiOption('1', 'Yes')
-		->addMultiOption('0', 'No');
+		$this->addMultiOption('0', 'No')
+		->addMultiOption('1', 'Yes');
 
 		$this->setDecorators(array(
 				'ViewHelper',

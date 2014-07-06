@@ -6,7 +6,8 @@ class Pump_Form_Element_Use extends Zend_Form_Element_Select
 		$this->setLabel('Use:');
 		
 		
-		$this->addMultiOption('Domestic','Domestic')
+		$this->addMultiOption('Unknown', 'Unknown')
+		    ->addMultiOption('Domestic','Domestic')
 			->addMultiOption('Irrigation', 'Irrigation')
 			->addMultiOption('Community', 'Community')
 			->addMultiOption('Livestock', 'Livestock')

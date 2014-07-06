@@ -16,9 +16,6 @@ class Pump_Form_Element_PumpDepth extends Zend_Form_Element_Text
 					array('Label', array('tag' => 'div')),
 			));
 			
-			$this->addValidator('NotEmpty', true, array('messages' =>
-					array('isEmpty' => '<b>Pump Depth</b> is required! If you do not know the <b>Pump Depth</b> enter 0')))
-			->addValidator('int', true, array('messages' => array('notInt' => '<b>Pump Depth</b> is not a  valid number!',)));
 			
 	}
 }

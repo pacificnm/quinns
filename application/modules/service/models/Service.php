@@ -71,6 +71,7 @@ class Service_Model_Service
 			->joinLeft('employee as employee_2', 'service.created = employee_2.employee_id', array('employee_id as created_id', 'first_name as create_first', 'last_name as create_last'));
 
 		
+		
 		$rowSet = $this->getTable()->fetchRow($select);
 		
 		return $rowSet;
@@ -209,7 +210,7 @@ class Service_Model_Service
 	 * @param unknown $description
 	 */
 	public function edit($id,$ownerId,$employee,$date,$description,$complaint,$directions,$status,
-	        $flowTest,$pump,$startTime=0, $endTime=0)
+	        $flowTest,$pump,$startTime, $endTime)
 	{
 		$data = array(
 				'owner' => $ownerId,

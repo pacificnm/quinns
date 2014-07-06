@@ -96,23 +96,31 @@ class Location_Model_Location
      * @param int $page            
      * @return s Zend_Db_Table_Row_Abstract
      */
-    public function browse ($page)
+    public function browse ($page, $itemPerPage = 10, $search = null, $sort = null, $dir = 'DESC')
     {
         $select = $this->getTable()
             ->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
             ->setIntegrityCheck(false);
         
-        $select->columns(
-                array(
-                        'id',
-                        'street',
-                        'city'
-                ));
+       if($search) {
+       	$select->where('street LIKE ?', $search . '%');
+       }
         
+       if($sort) {
+       	$select->order('location.'.$sort. ' '. $dir);
+       }
+       
+      
+       
         $paginator = Zend_Paginator::factory($select);
-        $paginator->setItemCountPerPage(15)
+        
+      
+        
+        $paginator->setItemCountPerPage($itemPerPage)
             ->setPageRange(10)
             ->setCurrentPageNumber($page);
+        
+        
         return $paginator;
     }
 

@@ -128,10 +128,13 @@
 						<td><?php echo $pump->well_depth;?></td>
 						<td><?php echo $pump->pump_depth;?></td>
 						<td>
-							<a style="float:right" href="/pump/edit/index/id/<?php echo $pump->id;?>" class="button left" title="Edit Pump"><span class="icon icon145"></span></a>
+						  <div style="align:right">
+							<a  href="/pump/edit/index/id/<?php echo $pump->id;?>" class="button left" title="Edit Pump"><span class="icon icon145"></span></a>
 							<?php if($pump->pump_test_id > 0) {?>
-								<a style="float:right" href="/pump-test/view/index/id/<?php echo $pump->id;?>" class="button left" title="View Pump Tests"><span class="icon icon138"></span></a>
+								<a style="float:right" href="/pump-test/view/index/id/<?php echo $pump->id;?>" class="button middle" title="View Pump Tests"><span class="icon icon138"></span></a>
 							<?php }?>
+							<a  href="" class="button middle" title="Delete Pump"><span class="icon icon58"></span><span class="label"></span></a>
+							</div>
 							<br />
 						</td>
 					</tr>

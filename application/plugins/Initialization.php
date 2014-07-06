@@ -95,10 +95,10 @@ class Application_Plugin_Initialization extends  Zend_Controller_Plugin_Abstract
 					$view->headTitle($action['meta_title']);
 				}
 			} else {
-				echo '<p style="color:red;">no action set for ' .$requestModule.'::'.$requestController.'::'.$requestAction.'</p>' ;
+				//echo '<p style="color:red;">no action set for ' .$requestModule.'::'.$requestController.'::'.$requestAction.'</p>' ;
 			}
 		} else {
-			echo '<p style="color:red;">no controller set for '.$requestModule.'::'.$requestController.'</p>';
+			//echo '<p style="color:red;">no controller set for '.$requestModule.'::'.$requestController.'</p>';
 		}
 		
 		

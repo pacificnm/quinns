@@ -41,7 +41,7 @@ class Service_AddController extends Zend_Controller_Action
     	
     	// load owner
     	$ownerModel = new Owner_Model_OwnerLocation();
-    	$owner = $ownerModel->loadOwnerByLocation($id);
+    	$owners = $ownerModel->loadAllOwnerByLocation($id);
     	
     	
     	
@@ -50,23 +50,41 @@ class Service_AddController extends Zend_Controller_Action
     	$pumps = $pumpModel->loadByLocation($id);
     	
     	$formModel = new Service_Form_Add();
-    	$form = $formModel->service($owner,$pumps);
+    	$form = $formModel->service($owners,$pumps);
     	
     	
     	if ($this->getRequest()->isPost()) {
     		if ($form->isValid($this->getRequest()->getPost())) {
     			
     		    
-    		    $startTime = date("m/d/Y") . ' ' . $this->getParam('startHour').':'.$this->getParam('startMin').':00 ' . $this->getParam('startAmpm');
-    		    $endTime   = date("m/d/Y") . ' ' . $this->getParam('endHour').':'.$this->getParam('endMin').':00 ' . $this->getParam('endAmpm');
-    		    
-    		    $startTimeStamp = strtotime($startTime);
-    		    $endTimeStamp   = strtotime($endTime);
+    			$date = strtotime($this->getParam('date'));
+    			
+    			// start time
+    			$startHour = $this->getParam('startHour');
+    			if($startHour == 0 && $this->getParam('startMin') == 0) {
+    			    $startHour = 0;
+    			} else {
+    			    if($this->getParam('startAmpm') == 'PM' && $startHour < 12) {
+    			        $startHour = $startHour + 12;
+    			    }
+    			    $startTime = mktime($startHour, $this->getParam('startMin'), 0, date("m", $date), date("d", $date), date("Y",$date));
+    			}
+    			 
+    			// end time
+    			$endHour = $this->getParam('endHour');
+    			if($endHour == 0 && $this->getParam('endMin') == 0) {
+    			    $endTime = 0;
+    			} else {
+    			    if($this->getParam('endAmpm') == 'PM' && $endHour < 12) {
+    			        $endHour = $endHour + 12;
+    			    }
+    			    $endTime = mktime($endHour, $this->getParam('endMin'), 0, date("m", $date), date("d", $date), date("Y",$date));
+    			}
     		    
     		  
     		    
     			$employee = $this->getParam('employee');
-    			$date = strtotime($this->getParam('date'));
+    			
     			$status = $this->getParam('status');
     			$description = $this->getParam('description');
     			$name = $this->getParam('owner');
@@ -74,26 +92,13 @@ class Service_AddController extends Zend_Controller_Action
     			$directions = $this->getParam('directions');
     			$flowTest = $this->getParam('flow_test');
     			$pump =  $this->getParam('pump');
+    			$ownerId = $this->getParam('owner_id');
     			
     			
     			$auth = Zend_Auth::getInstance();
     			$identity = $auth->getIdentity();
     			$create = $identity['employeeId'];
-    			
-    			// check for owner name if none found create new owner
-    			$ownerModel = new Owner_Model_Owner();
-    			$ownerData = $ownerModel->loadByName($name);
-    			
-    			if(empty($ownerData)){
-    				$ownerId = $ownerModel->create($name, $street, $street2, $city, $state, $zip, $phone, $email, 1);
-    				$newOwner = true;
-    				$changeLogModule = new ChangeLog_Model_ChangeLog();
-    				$changeLogModule->create('owner',$ownerId, 'Created Owner');
-    			} else {
-    				$ownerId = $ownerData->id;
-    				$newOwner = false;
-    			}
-    			
+  
     			$serviceModel = new Service_Model_Service();
     	
     			$id = $serviceModel->create($id,$ownerId,$employee,$date,$description,
@@ -102,11 +107,7 @@ class Service_AddController extends Zend_Controller_Action
     			$changeLogModule = new ChangeLog_Model_ChangeLog();
     			$changeLogModule->create('service',$id, 'Created	 Service');
     			
-    			if($newOwner) {
-    				$this->redirect('/owner/edit/index/id/' . $ownerId.'/from/service-add/service_id/'.$id.'/msg/owner-add-from-service');
-    			} else {
-    				$this->redirect('/service/view/index/id/' . $id.'/msg/service-add');
-    			}
+    			$this->redirect('/service/view/index/id/' . $id.'/msg/service-add');
     			
     		} else {
     			$form->highlightErrorElements();

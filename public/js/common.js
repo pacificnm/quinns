@@ -1,121 +1,5 @@
 $(document).ready(function () {
 	
-
-	$('#keywords').live('keyup', throttle(function(e) {
-		
-		var keyCode = e.keyCode || e.which,
-		arrow = {up: 38, down: 40, left: 37, right: 39, esc: 27, enter: 13};
-		
-		if(keyCode == arrow.up || keyCode == arrow.down || keyCode == arrow.esc
-			|| keyCode == arrow.left || keyCode == arrow.right){
-			return false;
-		}
-		
-		if(keyCode != arrow.enter){
-			var keyword = $.trim($(this).val());
-			
-			if(keyword != ""){ $('.ajax-loader').show(); }
-			
-			var form_data = {
-				search: keyword
-			};
-			url = '/location/' + "search";
-			
-			$.ajax({
-				type: 'post',
-				url: url,
-				cache: false,
-				queue: true,
-				dataType: 'json',
-				data: form_data, 
-				success: function(data) {
-					
-					$('.ajax-loader').hide();
-					if(keyword != ""){
-						$(".autoComplete").show();
-					} else {
-						$(".autoComplete").hide();
-					}
-					$(".autoComplete ul").empty();
-					
-					
-					if(data['noResult'] == null){
-						$(data).each(function(index) {
-							$(".autoComplete ul").append("<li class=\"name\" style=\" cursor:pointer\" onclick=\" document.getElementById('keywords').value = '" + data[index].keyword+ "'; document.getElementById('locationId').value='"+ data[index].id+"';\">"+BoldSearchTerm(data[index].keyword, data[index].keyword)+"</li>");
-						});
-						
-					} else {
-						
-						$(".autoComplete ul").append("<li class=\"name\">Add New </li>");
-						
-					}
-					
-					
-					
-					
-				}
-			});
-		}
-		
-		return false;
-	}));
-	
-	$(document).keydown(function(e){
-		
-		var keyCode = e.keyCode || e.which,
-		arrow = {up: 38, down: 40, esc: 27, enter: 13};
-		
-		if($('.autoComplete').is(":visible") && !$('.autoComplete li').hasClass('noMatch')){
-			
-			var element = $('.autoComplete');
-			var hasSelected = $('.autoComplete ul li').hasClass('selected');
-			var isFirst = $('.autoComplete ul li').first().hasClass('selected');
-			var isLast = $('.autoComplete ul li').last().hasClass('selected');
-			
-			if(hasSelected && keyCode == arrow.enter){
-				e.preventDefault();
-			}
-			
-			switch (keyCode) {
-				case arrow.up:
-					if(hasSelected){
-						if(isFirst){
-							$('li.selected', element).removeClass('selected');
-							$('ul li', element).last().addClass('selected');
-							break;
-						}
-						$('li.selected', element).prev().addClass('selected');
-						$('li.selected', element).next().removeClass('selected');
-					} else {
-						$('ul li', element).last().addClass('selected');
-					}
-				
-				break;
-				case arrow.down:
-					if(hasSelected){
-						if(isLast){
-							$('li.selected', element).removeClass('selected');
-							$('ul li', element).first().addClass('selected');
-							break;
-						}	
-						$('li.selected', element).next().addClass('selected');
-						$('li.selected', element).prev().removeClass('selected');
-					} else {
-						$('ul li', element).first().addClass('selected');
-					}
-				
-				break;
-				case arrow.enter:
-					window.location.href = $('li.selected a', element).attr('href');
-					$('.autoComplete').hide();
-				break;
-			}
-		}
-		
-		if(keyCode == arrow.esc){
-			$('.autoComplete').hide();
-		}
-	});
 	
 	$(document).click(function(){
 		$(".autoComplete").hide();
@@ -131,15 +15,7 @@ $(document).ready(function () {
 		return false;
 	});
 	
-	$('.delete').live('click', function(){
-		var confirm = window.confirm("Are you sure you want to delete this Comment?");
-		
-		if(confirm){
-			return true;
-		}
-		
-		return false;
-	});
+	
 	
 	$('.requestForm').submit(function(){
 
@@ -262,26 +138,7 @@ $(document).ready(function () {
 		}).blur();
 	}
 	
-	$('.load-more-comments').live('click', function(){
-		$('.ajax-loader').show();
-		$(this).html('Loading...<span></span>')
-		
-		$movieID = $(this).attr('data-movieID');
-		$offset = $(this).attr('data-offset');
-		$max = $(this).attr('data-max');
-		$("<div>").load(webRoot+'loadcomments/'+$offset+'/'+$movieID, function() {
-			$(".comment-list-wrapper").append($(this).html());
-			$('.load-more-comments').attr('data-offset', parseInt($offset)+50);
-			
-			$('.ajax-loader').hide();
-			$('.load-more-comments').html('See More Comments<span></span>')
-			$('.more-count span').html($('.comment').size());
-			
-			if($('.comment').size() == $max){
-				$('.load-more-comments').remove();
-			}
-		});
-	});
+	
 
 });
 

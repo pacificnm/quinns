@@ -83,6 +83,10 @@ class Service_ViewController extends Zend_Controller_Action
     	$ownerModel = new Owner_Model_Owner();
     	$owner = $ownerModel->loadById($service->owner);
     	
+    	// load all contacts
+    	$ownerModelLocation = new Owner_Model_OwnerLocation();
+    	$contacts = $ownerModelLocation->loadAllOwnerByLocation($service->location);
+    	
     	// load pump
     	$pumpModel = new Pump_Model_Pump();
     	$pump = $pumpModel->loadById($service->pump);
@@ -100,7 +104,7 @@ class Service_ViewController extends Zend_Controller_Action
     	
     	$pdfModel = new Service_Model_Pdf();
     	
-    	$pdf = $pdfModel->service($service,$location,$owner,$note,$pump,$geo,$pumpTests, $oldServices);
+    	$pdf = $pdfModel->service($service,$location,$owner,$note,$pump,$geo,$pumpTests, $oldServices, $contacts);
     	
     	$this->_helper->layout->disableLayout();
     	

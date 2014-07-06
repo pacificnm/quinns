@@ -18,8 +18,24 @@
             <?php }?>
 		
 			<div class="grid_4 pad_4"><b>Service Date:</b> <?php echo date("m/d/Y", $this->service->date);?></div>
-			<div class="grid_3 pad_4"><b>Start Time:</b> <?php echo date("H:i:s A", $this->service->start_time);?></div>
-			<div class="grid_3 pad_4"><b>End Time:</b> <?php echo date("H:i:s A", $this->service->end_time);?></div>
+			<div class="grid_3 pad_4"><b>Start Time:</b> 
+			<?php 
+			     if($this->service->start_time > 0) {
+			         echo date("H:i:s A", $this->service->start_time);
+			     } else {
+                    echo "Not Set";
+                 }        
+			 ?>
+			</div>
+			<div class="grid_3 pad_4"><b>End Time:</b> 
+			 <?php 
+			     if( $this->service->end_time > 0) {
+			     echo date("H:i:s A", $this->service->end_time);
+			     } else {
+                    echo "Not Set";
+                } 
+			 ?>
+			 </div>
 			
 			
 			<div class="clear"></div>
@@ -27,9 +43,14 @@
 			<div class="grid_4 pad_4"><b>Status:</b> <?php echo $this->service->status == 'Closed' ? '<span style="color:red;">'.$this->service->status.'</span>' : '<span style="color:green;">'.$this->service->status.'</span>';?></div>
 			<div class="clear"></div>
 			
-			<div class="grid_4 pad_4"><b>Requested By:</b> <?php if(!empty($this->service->name)){ echo 'Unknown'; } else { echo $this->service->name;}?></div>
+			<div class="grid_4 pad_4"><b>Requested By:</b> <?php echo $this->service->name; ?></div>
 			<div class="grid_4 pad_4"><b>Service Tech:</b> <?php echo $this->service->first_name;?> <?php echo $this->service->last_name;?></div>
 			<div class="grid_4 pad_4"><b>Created By:</b> <?php echo $this->service->create_first;?> <?php echo $this->service->create_last;?></div>
+			<div class="clear"></div>
+			
+			<div class="grid_8 pad_4">
+				<b>Contacts:</b>
+			</div>
 			<div class="clear"></div>
 			
 			<div class="grid_4 pad_4"><b>Pump:</b> <?php echo $this->service->pump == 0 ? 'Unknown' : $this->service->pump_model;?></div>

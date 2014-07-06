@@ -45,7 +45,7 @@ class Service_Form_Add extends Zend_Form
         /* Form Elements & Other Definitions Here ... */
     }
     
-    public function service($owner, $pumps)
+    public function service($owners, $pumps)
     {
     	$this->addElement(new Service_Form_Element_Employee('employee'));
     	
@@ -53,8 +53,12 @@ class Service_Form_Add extends Zend_Form
     	$element->setValue(date('M d, Y', time()));
     	$this->addElement($element);
     	
-    	$element = new Service_Form_Element_Owner('owner');
-    	$element->setValue($owner->name);
+    	// set owners
+    	$element = new Service_Form_Element_Owner('owner_id');
+    	foreach($owners as $owner) {
+    		$element->addMultiOption($owner->id, $owner->name . " - " . $owner->owner_type);
+    	}
+    	$element->setDescription('The Contact selected will be the Billing Address. All other Contacts will be included in the Service Request.');
     	$this->addElement($element);
     	
     	$element = new Service_Form_Element_Pump('pump');

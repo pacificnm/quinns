@@ -50,7 +50,7 @@ class Service_Form_Edit extends Zend_Form
      * @param unknown $service
      * @return Service_Form_Edit
      */
-    public function service($service, $owner, $pumps)
+    public function service($service, $owners, $pumps)
     {
     	
     	$element = new Service_Form_Element_Employee('employee');
@@ -61,9 +61,26 @@ class Service_Form_Edit extends Zend_Form
     	$element->setValue(date('M d,Y', $service->date));
     	$this->addElement($element);
     	
-    	$element = new Service_Form_Element_Owner('owner');
-    	$element->setValue($owner->name);
+    	$element = new Service_Form_Element_StartTime('startTime');
+    	$element->setValue($service->start_time);
+    	$element->setLabel('Start Time:');
     	$this->addElement($element);
+    	 
+    	$element = new Service_Form_Element_EndTime('endTime');
+    	$element->setValue($service->end_time);
+    	$element->setLabel('End Time:');
+    	$this->addElement($element);
+    	
+    	// set owners
+    	$element = new Service_Form_Element_Owner('owner_id');
+    	foreach($owners as $owner) {
+    		$element->addMultiOption($owner->id, $owner->name . " - " . $owner->owner_type);
+    	}
+    	$element->setValue($service->owner);
+    	
+    	$element->setDescription('The Contact selected will be the Billing Address. All other Contacts will be included in the Service Request.');
+    	$this->addElement($element);
+    	
     	
     	$element = new Service_Form_Element_Complaint('complaint');
     	$element->setValue($service->complaint);
@@ -93,7 +110,6 @@ class Service_Form_Edit extends Zend_Form
     		$element->addMultiOption($pump->id, $pump->pump_model);
     	}
     	$element->setValue($service->pump);
-    	
     	$this->addElement($element);
     	
     	$this->addElement('hash', 'no_csrf', array('salt' => 'unique', 'timeout' => 3600));

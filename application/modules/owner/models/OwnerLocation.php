@@ -78,7 +78,7 @@ class Owner_Model_OwnerLocation
 		->setIntegrityCheck(false);
 	
 		$select->where('location = ?', $id)
-			->joinLeft('owner', 'owner_location.owner = owner.id', array('id as owner_id', 'name', 'phone'));
+			->joinLeft('owner', "owner_location.owner = owner.id AND owner.status = 1", array('id as owner_id', 'name', 'phone'));
 	
 		// only fetch first row
 		$rowSet = $this->getTable()->fetchAll($select);

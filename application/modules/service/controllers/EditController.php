@@ -39,8 +39,8 @@ class Service_EditController extends Zend_Controller_Action
     	$this->view->location = $location;
     	
     	// load owner
-    	$ownerModel = new Owner_Model_Owner();
-    	$owner = $ownerModel->loadById($service->owner);
+    	$ownerModel = new Owner_Model_OwnerLocation();
+    	$owners = $ownerModel->loadAllOwnerByLocation($location->id);
     	 
     	// load pumps
     	$pumpModel = new Pump_Model_Pump();
@@ -48,13 +48,38 @@ class Service_EditController extends Zend_Controller_Action
  
     	
     	$formModel = new Service_Form_Edit();
-    	$form = $formModel->service($service,$owner,$pumps);
+    	$form = $formModel->service($service, $owners,$pumps);
     	
     	if ($this->getRequest()->isPost()) {
     		if ($form->isValid($this->getRequest()->getPost())) {
     			
-    			$employee = $this->getParam('employee');
     			$date = strtotime($this->getParam('date'));
+    			
+    			// start time
+    			$startHour = $this->getParam('startHour');
+    			if($startHour == 0 && $this->getParam('startMin') == 0) {
+    			    $startHour = 0;
+    			} else {
+    			    if($this->getParam('startAmpm') == 'PM' && $startHour < 12) {
+    			        $startHour = $startHour + 12;
+    			    }
+    			    $startTime = mktime($startHour, $this->getParam('startMin'), 0, date("m", $date), date("d", $date), date("Y",$date));     			    
+    			} 
+    			
+    			// end hour
+    			$endHour = $this->getParam('endHour');
+    			if($endHour == 0 && $this->getParam('endMin') == 0) {
+    			    $endTime = 0;
+    			} else {
+    			    if($this->getParam('endAmpm') == 'PM' && $endHour < 12) {
+    			        $endHour = $endHour + 12;
+    			    }
+    			    $endTime = mktime($endHour, $this->getParam('endMin'), 0, date("m", $date), date("d", $date), date("Y",$date));
+    			}
+    			
+    			
+    			$employee = $this->getParam('employee');
+    			
     			$status = $this->getParam('status');
     			$description = $this->getParam('description');
     			$name = $this->getParam('owner');
@@ -62,23 +87,15 @@ class Service_EditController extends Zend_Controller_Action
     			$directions = $this->getParam('directions');
     			$flowTest = $this->getParam('flow_test');
     			$pump =  $this->getParam('pump');
+    			$ownerId = $this->getParam('owner_id');
     			
     			// check for owner name if none found create new owner
     			$ownerModel = new Owner_Model_Owner();
     			$ownerData = $ownerModel->loadByName($name);
     			 
-    			if(empty($ownerData)){
-    				$ownerId = $ownerModel->create($name, $street, $street2, $city, $state, $zip, $phone, $email, 1);
-    				$newOwner = true;
-    				$changeLogModule = new ChangeLog_Model_ChangeLog();
-    				$changeLogModule->create('owner',$ownerId, 'Created Owner');
-    			} else {
-    				$ownerId = $ownerData->id;
-    				$newOwner = false;
-    			}
     			
     			
-    			$serviceModel->edit($id,$ownerId,$employee,$date,$description,$complaint,$directions,$status,$flowTest,$pump);
+    			$serviceModel->edit($id,$ownerId,$employee,$date,$description,$complaint,$directions,$status,$flowTest,$pump, $startTime, $endTime);
     			
     			
     			

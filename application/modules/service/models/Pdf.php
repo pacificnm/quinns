@@ -4,7 +4,7 @@ class Service_Model_Pdf extends Zend_Pdf
 {
 
 
-	public function service($service,$location,$owner,$note,$pump,$geo,$pumpTests, $oldServices)
+	public function service($service,$location,$owner,$note,$pump,$geo,$pumpTests, $oldServices,$contacts)
 	{
 		$pdf = new Zend_Pdf();
 		
@@ -47,7 +47,7 @@ class Service_Model_Pdf extends Zend_Pdf
 		// Street Address
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
 		$page->setFont($font, 11);
-		$page->drawText('Street Address:', 230, $startLine, 'UTF-8');
+		$page->drawText('Service Address:', 230, $startLine, 'UTF-8');
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 11);
 		$page->drawText($location->street, 320, $startLine, 'UTF-8');
@@ -57,7 +57,25 @@ class Service_Model_Pdf extends Zend_Pdf
 		$page->drawText($location->city .', ' . $location->state .' ' . $location->zip, 320, 754, 'UTF-8');
 		
 		$startLine-=18;
+		
+		// owner name
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+		$page->setFont($font, 11);
+		$page->drawText('Billing Name:', 230, $startLine, 'UTF-8');
+		
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+		$page->setFont($font, 11);
+		$page->drawText($owner->name, 320, $startLine, 'UTF-8');
+		
 		$startLine-=18;
+		
+		// billing address
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+		$page->setFont($font, 11);
+		$page->drawText('Billing Address:', 230, $startLine, 'UTF-8');
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+		$page->setFont($font, 11);
+		$page->drawText($owner->street, 320, $startLine, 'UTF-8');
 		
 		// Scheduled Service
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
@@ -68,14 +86,45 @@ class Service_Model_Pdf extends Zend_Pdf
 		$page->drawText(date("M d, Y",$service->date), 95, $startLine, 'UTF-8');
 		
 		
-		// owner name
+		$startLine-=18;
+		
+		// start time
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
 		$page->setFont($font, 11);
-		$page->drawText('Name:', 230, $startLine, 'UTF-8');
-		
+		$page->drawText('Start Time:', 10, $startLine, 'UTF-8');
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 11);
-		$page->drawText($owner->name, 320, $startLine, 'UTF-8');
+		if($service->start_time > 0) {
+		    $page->drawText(date("H:i A",$service->start_time), 95, $startLine, 'UTF-8');
+		} else {
+		  $page->drawText("_____________", 95, $startLine, 'UTF-8');
+		}
+		// billing city
+		$page->drawText($owner->city .', ' . $owner->state .' ' . $owner->zip, 320, $startLine, 'UTF-8');
+		
+		$startLine-=18;
+		
+		
+		// end time
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+		$page->setFont($font, 11);
+		$page->drawText('End Time:', 10, $startLine, 'UTF-8');
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+		$page->setFont($font, 11);
+		if($service->end_time > 0) {
+		    $page->drawText(date("H:i A",$service->end_time), 95, $startLine, 'UTF-8');
+		} else {
+		    $page->drawText("_____________", 95, $startLine, 'UTF-8');
+		}
+		
+		
+		// Telephone
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+		$page->setFont($font, 11);
+		$page->drawText('Billing Phone:', 230, $startLine, 'UTF-8');
+		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+		$page->setFont($font, 11);
+		$page->drawText($owner->phone, 320, $startLine, 'UTF-8');
 		
 		$startLine-=18;
 		
@@ -87,17 +136,22 @@ class Service_Model_Pdf extends Zend_Pdf
 		$page->setFont($font, 11);
 		$page->drawText($service->status, 95, $startLine, 'UTF-8');
 		
-		// billing address
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-		$page->setFont($font, 11);
-		$page->drawText('Billing Address:', 230, $startLine, 'UTF-8');
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-		$page->setFont($font, 11);
-		$page->drawText($owner->street, 320, $startLine, 'UTF-8');
+		
+		// loop through contacts 
+		$contactLine = $startLine;
+		foreach($contacts as $contact) {
+		    $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+		    $page->setFont($font, 11);
+		    $page->drawText($contact->owner_type.":", 230, $contactLine, 'UTF-8');
+		    
+		    $font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+		    $page->setFont($font, 11);
+		    $page->drawText($contact->name . " " . $contact->phone, 278, $contactLine, 'UTF-8');
+		    
+		    $contactLine-=18;
+		}
 		
 		$startLine-=18;
-		
-		$page->drawText($owner->city .', ' . $owner->state .' ' . $owner->zip, 320, $startLine, 'UTF-8');
 		
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
 		$page->setFont($font, 11);
@@ -112,16 +166,11 @@ class Service_Model_Pdf extends Zend_Pdf
 		}
 		$startLine-=18;
 		
-		// Telephone
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-		$page->setFont($font, 11);
-		$page->drawText('Telephone:', 230, $startLine, 'UTF-8');
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-		$page->setFont($font, 11);
-		$page->drawText($owner->phone, 320, $startLine, 'UTF-8');
+		// adjust line from contacts
+		if($contactLine < $startLine) {
+		    $startLine = $contactLine;
+		}
 		
-		$startLine-=18;
-		$startLine-=18;
 		
 		// access
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
@@ -273,10 +322,10 @@ class Service_Model_Pdf extends Zend_Pdf
 			// pump_tag
 			$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
 			$page->setFont($font, 11);
-			$page->drawText('Pump Tag:', 20, $startLine, 'UTF-8');
+			$page->drawText('Well Tag:', 20, $startLine, 'UTF-8');
 			$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 			$page->setFont($font, 11);
-			if($pump->pump_tag == 'Unknown') {
+			if($pump->pump_tag == 'Unknown' || empty($pump->pump_tag)) {
 				$page->drawText('__________________________', 90, $startLine, 'UTF-8');
 			} else {
 				$page->drawText($pump->pump_tag, 90, $startLine, 'UTF-8');

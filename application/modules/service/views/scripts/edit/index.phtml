@@ -21,15 +21,17 @@
 			<?php } ?>
 			<form method="post" action="">
 				<div class="grid_3 pad_4"><?php echo $this->form->getElement('date');?></div>
+				<div class="clear"></div>
+				
+				<div class="grid_3 padd_4"><?php echo $this->form->getElement('startTime')?></div>
+				<div class="grid_3 padd_4"><?php echo $this->form->getElement('endTime')?></div>
+				
+				<div class="clear"></div>
 				<div class="grid_3 pad_4"><?php echo $this->form->getElement('status');?></div>
 				<div class="grid_3 pad_4"><?php echo $this->form->getElement('employee');?></div>
 				<div class="clear"></div>
 				
-				<div class="grid_8 pad_4"><?php echo $this->form->getElement('owner');?>
-					<div class="pump">
-						<div class="ownerAutoComplete auto"><ul></ul></div>
-					</div>
-				</div>
+				<div class="grid_8 pad_4"><?php echo $this->form->getElement('owner_id');?></div>
 				<div class="clear"></div>
 				
 				<div class="grid_4 pad_4"><?php echo $this->form->getElement('pump');?></div>
@@ -53,7 +55,7 @@
 				</div>
 				<div class="clear"></div>
 				
-			</form>		
+			</form>	
 				
 			<br />
 			<div class="buttons">

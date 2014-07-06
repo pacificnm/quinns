@@ -5,13 +5,13 @@ class Owner_Form_Element_Type extends Zend_Form_Element_Select
 	{
 
 
-		$this->setLabel(Person_Model_String::PERSON_TYPE)
+		$this->setLabel('Contact Type')
 		->setRequired(TRUE);
 
 
-		$this->addMultiOption(Person_Model_String::PERSON_OWNER, Person_Model_String::PERSON_OWNER);
-		$this->addMultiOption(Person_Model_String::PERSON_RENTER, Person_Model_String::PERSON_RENTER);
-		$this->addMultiOption(Person_Model_String::PERSON_REALTOR, Person_Model_String::PERSON_REALTOR);
+		$this->addMultiOption('Owner', 'Owner');
+		$this->addMultiOption('Renter', 'Renter');
+		$this->addMultiOption('Realtor', 'Realtor');
 
 		$this->setDecorators(array(
 				'ViewHelper',

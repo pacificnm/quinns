@@ -1,11 +1,11 @@
 <?php
 class Service_Form_Element_EndTime extends Zend_Form_Element_Xhtml
 {
-    protected $_dateFormat = '%year%-%month%-%day%';
+    protected $_dateFormat = '%hour%-%min%-%day% ';
     protected $_hour;
     protected $_min;
-    protected $_ampm;
-    
+	protected $_time;
+	
     public function __construct($spec, $options = null)
     {
         $this->addPrefixPath(
@@ -51,38 +51,33 @@ class Service_Form_Element_EndTime extends Zend_Form_Element_Xhtml
 
     public function setMin($value)
     {
-        $this->min = (int) $value;
+        $this->_min = (int) $value;
         return $this;
     }
 
-    public function setAmPm()
-    {
-        $this->_ampm = (string) $value;
-        return $this;
-    }
-    
     public function getMin()
     {
         return $this->_min;
     }
 
-    public function getAmPm()
+    public function getTime()
     {
-        return $this->_ampm;
+    	return $this->_time;
     }
     
     public function setValue($value)
-    {
-
+    {   
+        if($value > 0 ) {       
+        	$this->setHour(date("h", $value));
+        	$this->setMin(date("i", $value));
+        	$this->setTime($value);
+        }
         return $this;
     }
 
-    public function getValue()
-    {
-        return str_replace(
-                array('%endHour%', '%endMin%', '%endAmPm%'),
-                array($this->getHour(), $this->getMin()), $this->getAmPm(),
-                $this->_dateFormat
-        );
+    public function setTime($value) {
+    	$this->_time = (int) $value;	
     }
+    
+   
 }

@@ -49,24 +49,24 @@ class Pump_EditController extends Zend_Controller_Action
     	if ($this->getRequest()->isPost()) {
     		if ($form->isValid($this->getRequest()->getPost())) {
     			
-    			$pumpModel = $this->getParam('pump_model');
-    			$pumpType = $this->getParam('pump_type');
-    			$wellDepth = $this->getParam('well_depth');
-    			$pumpDepth = $this->getParam('pump_depth');
-    			$voltage = $this->getParam('voltage');
-    			$phase = $this->getParam('phase');
-    			$wire = $this->getParam('wire');
-    			$pipe = $this->getParam('pipe');
-    			$pipeSize = $this->getParam('pipe_size');
-    			$pumpTag = $this->getParam('pump_tag');
-    			$use = $this->getParam('use');
-    			$yield = $this->getParam('yield');
-    			$staticLevel = $this->getParam('static_level');
-    			$tankSize = $this->getParam('tank_size');
-    			$tankModel = $this->getParam('tank_model');
-    			$tankType = $this->getParam('tank_type');
+    			$pumpModel = $this->getParam('pump_model', 'Unknown');
+    			$pumpType = $this->getParam('pump_type', 'Unknown');
+    			$wellDepth = $this->getParam('well_depth', 'Unknown');
+    			$pumpDepth = $this->getParam('pump_depth', 'Unknown');
+    			$voltage = $this->getParam('voltage', 'Unknown');
+    			$phase = $this->getParam('phase', 'Unknown');
+    			$wire = $this->getParam('wire', 'Unknown');
+    			$pipe = $this->getParam('pipe', 'Unknown');
+    			$pipeSize = $this->getParam('pipe_size', 'Unknown');
+    			$pumpTag = $this->getParam('pump_tag', 'Unknown');
+    			$use = $this->getParam('use', 'Unknown');
+    			$yield = $this->getParam('yield', 'Unknown');
+    			$staticLevel = $this->getParam('static_level', 'Unknown');
+    			$tankSize = $this->getParam('tank_size', 'Unknown');
+    			$tankModel = $this->getParam('tank_model', 'Unknown');
+    			$tankType = $this->getParam('tank_type', 'Unknown');
     			
-    			$filtration =  $this->getParam('filtration');
+    			$filtration =  $this->getParam('filtration', 'Unknown');
     			
     			// Load Models
     			$pumpModelModel = new PumpModel_Model_PumpModel();

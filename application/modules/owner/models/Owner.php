@@ -66,6 +66,32 @@ class Owner_Model_Owner
 		return $rowSet;
 	}
 	
+	public function browse ($page, $itemPerPage = 10, $search = null, $sort = null, $dir = 'DESC')
+	{
+	    $select = $this->getTable()
+	    ->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
+	    ->setIntegrityCheck(false);
+	    
+	    if($search) {
+	        $select->where('name LIKE ?', $search . '%');
+	    }
+	    
+	    if($sort) {
+	        $select->order('owner.'.$sort . ' '. $dir);
+	    }
+	     
+	    
+	    
+	   	$paginator = Zend_Paginator::factory($select);
+	    
+	    
+	    $paginator->setItemCountPerPage($itemPerPage)
+	    ->setPageRange(10)
+	    ->setCurrentPageNumber($page);
+	    
+	    
+	    return $paginator;
+	}
 	
 	public function loadByKeyword($keyword)
 	{

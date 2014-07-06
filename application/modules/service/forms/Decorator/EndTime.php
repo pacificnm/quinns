@@ -15,11 +15,12 @@ class Service_Form_Decorator_EndTime extends Zend_Form_Decorator_Abstract
 			return $content;
 		}
 	
+		
 		$hour  = $element->getHour();
 		$min   = $element->getMin();
-		$amPm  = $element->getAmPm();
 		$name  = $element->getFullyQualifiedName();
 		
+				
 		$params = array(
 				'size'      => 2,
 				'maxlength' => 2,
@@ -32,19 +33,38 @@ class Service_Form_Decorator_EndTime extends Zend_Form_Decorator_Abstract
 		$markup = '<select name="endHour" id="endHour">';
 				$i = 0;
 				while($i < 13){
-					$markup .= '<option value="'.$i.'">'.$i.'</option>';
+					$markup .= '<option value="'.$i.'"'; 
+					if($hour == $i) $markup .= ' selected';
+					$markup .= '>'.$i.'</option>';
 					$i++;
 				}
 		$markup .= '</select> : <select name="endMin" id="endMin">';
-		$markup .= '<option value="00">00</option>';
-		$markup .= '<option value="15">15</option>';
-		$markup .= '<option value="30">30</option>';
-		$markup .= '<option value="45">45</option>';
+		$markup .= '<option value="00"'; 
+		if($min == 00) $markup .= ' selected';
+		$markup .= '>00</option>';
+		
+		$markup .= '<option value="15"';
+		if($min == 15) $markup .= ' selected';
+		$markup .= '>15</option>';
+		
+		$markup .= '<option value="30"'; 
+		if($min == 30) $markup .= ' selected';
+		$markup .= '>30</option>';
+		
+		$markup .= '<option value="45"';
+		if($min == 45) $markup .= ' selected';
+		$markup .= '>45</option>';
+		
 		$markup .= '</select>';
 		
 		$markup .= ': <select name="endAmpm" id="endAmpm">';
-		$markup .= '<option value="AM">AM</option>';
-		$markup .= '<option value="PM">PM</option></select>';
+		$markup .= '<option value="AM"';
+		if(date("A", $element->getTime()) == "AM" ) $markup .= ' selected';
+		$markup .= '>AM</option>';
+		
+		$markup .= '<option value="PM"';
+		if(date("A", $element->getTime()) == "PM" ) $markup .= ' selected';
+		$markup .= '>PM</option></select>';
 		
 		
 		/**$markup = $view->formText($name . '[hour]', $hour, $params)
