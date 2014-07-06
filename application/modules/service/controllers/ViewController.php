@@ -83,6 +83,7 @@ class Service_ViewController extends Zend_Controller_Action
     	$ownerModel = new Owner_Model_Owner();
     	$owner = $ownerModel->loadById($service->owner);
     	
+    	
     	// load all contacts
     	$ownerModelLocation = new Owner_Model_OwnerLocation();
     	$contacts = $ownerModelLocation->loadAllOwnerByLocation($service->location);

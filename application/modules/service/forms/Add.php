@@ -47,6 +47,8 @@ class Service_Form_Add extends Zend_Form
     
     public function service($owners, $pumps)
     {
+        
+        
     	$this->addElement(new Service_Form_Element_Employee('employee'));
     	
     	$element = new Service_Form_Element_Date('date');
@@ -56,7 +58,7 @@ class Service_Form_Add extends Zend_Form
     	// set owners
     	$element = new Service_Form_Element_Owner('owner_id');
     	foreach($owners as $owner) {
-    		$element->addMultiOption($owner->id, $owner->name . " - " . $owner->owner_type);
+    		$element->addMultiOption($owner->owner_id, $owner->name . " - " . $owner->owner_type);
     	}
     	$element->setDescription('The Contact selected will be the Billing Address. All other Contacts will be included in the Service Request.');
     	$this->addElement($element);

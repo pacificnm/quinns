@@ -71,10 +71,11 @@ class Service_Form_Edit extends Zend_Form
     	$element->setLabel('End Time:');
     	$this->addElement($element);
     	
+    	
     	// set owners
     	$element = new Service_Form_Element_Owner('owner_id');
     	foreach($owners as $owner) {
-    		$element->addMultiOption($owner->id, $owner->name . " - " . $owner->owner_type);
+    		$element->addMultiOption($owner->owner_id, $owner->name . " - " . $owner->owner_type);
     	}
     	$element->setValue($service->owner);
     	

@@ -45,6 +45,7 @@ class Service_AddController extends Zend_Controller_Action
     	
     	
     	
+    	
     	// load pumps
     	$pumpModel = new Pump_Model_Pump();
     	$pumps = $pumpModel->loadByLocation($id);
@@ -95,6 +96,7 @@ class Service_AddController extends Zend_Controller_Action
     			$pump =  $this->getParam('pump');
     			$ownerId = $this->getParam('owner_id');
     			
+    		
     			
     			$auth = Zend_Auth::getInstance();
     			$identity = $auth->getIdentity();
