@@ -73,14 +73,13 @@ class Owner_Model_Owner
 	    ->setIntegrityCheck(false);
 	    
 	    if($search) {
-	        $select->where('name LIKE ?', '%' . $search . '%');
+	        $select->where("name LIKE  '%" . $search . "%' OR phone LIKE '%" . $search . "%'" );
 	    }
 	    
 	    if($sort) {
 	        $select->order('owner.'.$sort . ' '. $dir);
 	    }
 	     
-	    
 	    
 	   	$paginator = Zend_Paginator::factory($select);
 	    
