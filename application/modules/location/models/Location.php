@@ -116,7 +116,7 @@ class Location_Model_Location
             ->setIntegrityCheck(false);
         
        if($search) {
-       	$select->where('street LIKE ?', $search . '%');
+       	$select->where('street LIKE ?', '%' . $search . '%');
        }
         
        if($sort) {
