@@ -79,7 +79,7 @@ class PumpTest_Form_Add extends Zend_Form
      * 
      * @return PumpTest_Form_Add
      */
-    public function pumpTest()
+    public function pumpTest($locationId)
     {
     	$this->addElement(new PumpTest_Form_Element_Requirements('requirements'));
     	
@@ -107,7 +107,13 @@ class PumpTest_Form_Add extends Zend_Form
     	
     	$this->addElement(new PumpTest_Form_Element_Employee('employee'));
     	
-    	$this->addElement(new PumpTest_Form_Element_Owner('owner'));
+    	$ownerModel = new Owner_Model_OwnerLocation();
+    	$owners = $ownerModel->loadAllOwnerByLocation($locationId);
+    	$element = new PumpTest_Form_Element_Owner('owner'); 
+    	foreach($owners as $owner) {
+    	    $element->addMultiOption($owner->owner_id, $owner->owner_type .' - ' . $owner->name);
+    	}
+    	$this->addElement($element);
     	
     	
     	

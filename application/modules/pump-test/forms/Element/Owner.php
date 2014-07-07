@@ -1,5 +1,5 @@
 <?php
-class PumpTest_Form_Element_Owner extends Zend_Form_Element_Text
+class PumpTest_Form_Element_Owner extends Zend_Form_Element_Select
 {
 	public function init()
 	{
@@ -7,8 +7,6 @@ class PumpTest_Form_Element_Owner extends Zend_Form_Element_Text
 		$this->setRequired(true);
 		$this->setAttrib('class', 'medium')
 			->setAttrib('autocomplete', 'off');
-		
-		$this->addValidator('NotEmpty', false, array('messages' =>
-				array('isEmpty' => '<b>Requested By</b> is required!')));
+
 	}
 }
