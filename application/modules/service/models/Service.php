@@ -152,7 +152,8 @@ class Service_Model_Service
 		$select->where('service.status = ?', 'Closed')
 		->where('location = ?', $locationId)
 		->joinLeft('location', 'service.location = location.id', array('id as location_id', 'street', 'city'))
-		->joinLeft('employee', 'service.employee = employee.employee_id', array('first_name','last_name'));
+		->joinLeft('employee', 'service.employee = employee.employee_id', array('first_name','last_name'))
+		->order('date DESC');
 		
 		$rowSet = $this->getTable()->fetchAll($select);
 		
