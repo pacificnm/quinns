@@ -4,7 +4,7 @@
 	<div class="box round first fullpage">
 		<h2>View Selected Sites Report</h2>
 		<div class="block">
-		<div class="grid_4 pad_4"><b>Prepaired For:</b> <?php echo $this->selectedSite->name;?></div>
+		<div class="grid_4 pad_4"><?php if( $this->selectedSite->name):?> <b>Prepaired For:</b> <?php echo $this->selectedSite->name;?> <?php endif;?></div>
 		<div class="grid_4 pad_4"><b>Date:</b> <?php Echo date("m d, Y", $this->selectedSite->date);?></div>
 		<div class="clear"></div>
 		
@@ -12,11 +12,11 @@
 		
 		<div class="clear"></div>
 		
-		<div class="grid_6 pad_4"><?php echo $this->selectedSite->city;?>, <?php echo $this->selectedSite->state;?> <?php echo $this->selectedSite->zip;?></div>
+		<div class="grid_6 pad_4"><?php if( $this->selectedSite->name):?><?php echo $this->selectedSite->city;?>, <?php echo $this->selectedSite->state;?> <?php echo $this->selectedSite->zip;?><?php endif;?></div>
 		<div class="clear"></div>
 		
-		<div class="grid_4 pad_4"><b>Phone:</b> <?php echo $this->selectedSite->phone?></div>
-		<div class="grid_4 pad_4"><b>Email</b> <?php echo $this->selectedSite->email;?></div>
+		<div class="grid_4 pad_4"><?php if( $this->selectedSite->name):?><b>Phone:</b> <?php echo $this->selectedSite->phone?><?php endif;?></div>
+		<div class="grid_4 pad_4"><?php if( $this->selectedSite->name):?><b>Email:</b> <?php echo $this->selectedSite->email;?><?php endif;?></div>
 			
 		<div class="clear"></div>
 		

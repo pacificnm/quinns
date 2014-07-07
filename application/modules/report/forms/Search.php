@@ -71,20 +71,33 @@ class Report_Form_Search extends Zend_Form
 		$element->setRequired(false);
 		$this->addElement($element);
 		
+		$element = new Owner_Form_Element_Name('name');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_Name('name'));
+		$element = new Owner_Form_Element_Phone('phone');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_Phone('phone'));
+		$element = new Owner_Form_Element_Email('email');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_Email('email'));
+		$element = new Owner_Form_Element_Street('owner_street');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_Street('owner_street'));
+		$element = new Owner_Form_Element_City('owner_city');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_City('owner_city'));
+		$element = new Owner_Form_Element_State('owner_state');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
-		$this->addElement(new Owner_Form_Element_State('owner_state'));
-		
-		$this->addElement(new Owner_Form_Element_Zip('owner_zip'));
+		$element = new Owner_Form_Element_Zip('owner_zip');
+		$element->setRequired(false);
+		$this->addElement($element);
 		
 		$element = new Report_Form_Element_Records('records');
 		$element->setValue('25');
