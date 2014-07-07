@@ -73,7 +73,7 @@ class Owner_Model_Owner
 	    ->setIntegrityCheck(false);
 	    
 	    if($search) {
-	        $select->where('name LIKE ?', $search . '%');
+	        $select->where('name LIKE ?', '%' . $search . '%');
 	    }
 	    
 	    if($sort) {
