@@ -104,17 +104,16 @@ class PumpTest_Form_Edit extends Zend_Form
     	 
     	$ownerModel = new Owner_Model_Owner();
     	
-    	
-    	if($pumpTest->owner) {
-    	    $owner = $ownerModel->loadById($pumpTest->owner);
-    	    $element = new PumpTest_Form_Element_Owner('owner');
-    	    $element->setValue($owner->name);
-    	    $this->addElement($element);
-    	} else {
-    	    $element = new PumpTest_Form_Element_Owner('owner');
-    	    $this->addElement($element);
-    	    
+    	$ownerModel = new Owner_Model_OwnerLocation();
+    	$owners = $ownerModel->loadAllOwnerByLocation($pumpTest->location);
+    	$element = new PumpTest_Form_Element_Owner('owner');
+    	foreach($owners as $owner) {
+    	    $element->addMultiOption($owner->owner_id, $owner->owner_type .' - ' . $owner->name);
     	}
+    	$element->setValue($pumpTest->owner);
+    	$this->addElement($element);
+    	
+    	
     	
     	
     	 
