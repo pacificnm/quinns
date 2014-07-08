@@ -70,29 +70,15 @@ class PumpTest_EditController extends Zend_Controller_Action
     			$endTime = $this->getParam('end_time');
     			$remarks = $this->getParam('remarks');
     			 
-    			// find ownerid
-    			$ownerModel = new Owner_Model_Owner();
-    			$owner = $ownerModel->loadByName($owner);
     			
-    			if(count($owner) === 0 ) {
-    			
-    			    $form->getElement("owner")->setErrors(array("<b>Missing Owner</b>. Please Enter a valid Owner Name and <b>CLICK ON THE NAME</b> from the list. If you do not see the Owner in the list then you must go back and create it first."));
-    			    	
-    			    $form->highlightErrorElements();
-    			    	
-    			    $this->view->form = $form;
-    			    	
-    			} else {
-    			
-        			$ownerId = $owner->id;
         			 
         			// create test
         			$pumpTestModel = new PumpTest_Model_PumpTest();
-        			$pumpTestModel->edit($id,$ownerId,$requirements,$source,$depth,$diameter,$equipment,$level,$vent, 
+        			$pumpTestModel->edit($id,$owner,$requirements,$source,$depth,$diameter,$equipment,$level,$vent, 
         					$seal,$popOffValve,$color,$taste,$odor,$employee,$remarks,$date);
         			 
         			$this->redirect('/pump-test/view/index/id/'.$id.'/msg/edit-ok');
-    			}
+    		
     			 
     		} else {
     			$form->highlightErrorElements();
