@@ -31,6 +31,17 @@ class Service_AddController extends Zend_Controller_Action
     	if($id < 1) {
     		$this->redirect('/service/add/error/msg/no-id');
     	}
+    	
+    	$ownerModel = new Owner_Model_OwnerLocation();
+    	$owners = $ownerModel->loadAllOwnerByLocation($id);
+    	
+    	if(count($owners) < 1 ) {
+    	
+    	    $this->redirect('/location/view/index/id/' . $id.'/msg/no-contact-service');
+    	}
+    	
+    	
+    	
     	// load location
     	$locationModel = new Location_Model_Location();
     	$location = $locationModel->loadById($id);
