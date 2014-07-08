@@ -38,6 +38,15 @@ class PumpTest_AddController extends Zend_Controller_Action
             $this->redirect('/pump-test/add/error/msg/no-id');
         }
         
+        $ownerModel = new Owner_Model_OwnerLocation();
+        $owners = $ownerModel->loadAllOwnerByLocation($id);
+        
+        if(count($owners) < 1 ) {
+            
+            $this->redirect('/location/view/index/id/' . $id.'/msg/no-pump-test-contact');    
+        }
+        
+        
         // load location
         $locationModel = new Location_Model_Location();
         $location = $locationModel->loadById($id);
@@ -45,6 +54,8 @@ class PumpTest_AddController extends Zend_Controller_Action
         
         $formModel = new PumpTest_Form_Add();
         $form = $formModel->pumpTest($location->id);
+        
+        
         
         if ($this->getRequest()->isPost()) {
             if ($form->isValid($this->getRequest()

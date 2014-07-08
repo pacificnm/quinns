@@ -30,6 +30,13 @@
                     <p>The Service was removed.</p>
                </div>
 			<?php }?>
+			<?php if($this->msg == 'no-pump-test-contact') {?>
+				<div class="message error">
+                	<h5>Error!</h5>
+                    <p>You must first assign a Contact before you can create a Pump Test.</p>
+                    
+               </div>
+			<?php }?>
 			
 				<div class="grid_6 pad_4">
 					<h6>Location Details</h6>
@@ -53,7 +60,7 @@
 					<div class="clear"></div>			
 				</div>
 				
-				<div class="grid_6 pad_4">
+				<div class="grid_6 pad_4" id="contact">
 					<h6>Contact Details</h6>
 				
 					<?php foreach($this->owners as $owners) : ?>
