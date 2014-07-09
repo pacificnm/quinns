@@ -67,7 +67,7 @@ class ImportController extends Zend_Controller_Action
 	    ini_set('memory_limit','1600M');
 	    
 	    $locationModel = new Location_Model_Location();
-	    $locations = $locationModel->loadEmptyLat(10);
+	    $locations = $locationModel->loadEmptyLat(1000);
 	    
 	    $googleModel = new Application_Model_GoogleMaps();
 	    $origin = '6811 Williams Hwy, Grants Pass, OR 97527';
