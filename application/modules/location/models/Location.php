@@ -105,6 +105,21 @@ class Location_Model_Location
         return $rowSet;
     }
     
+    public function loadEmptyPLSS($limit = 10)
+    {
+        $select = $this->getTable()
+        ->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
+        ->setIntegrityCheck(false);
+        
+        $select->where('township IS NULL')
+        ->where('plss_fail != ?', 1)->limit($limit);
+        
+        
+        $rowSet = $this->getTable()->fetchAll($select);
+        
+        return $rowSet;
+    }
+    
     /**
      * Paganated Page to browse locations by
      *

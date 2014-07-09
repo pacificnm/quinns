@@ -110,11 +110,12 @@ class ImportController extends Zend_Controller_Action
 	        // failed to find location using google mark it failed.    
 	        } else {
 	           echo "Failed to find lat and lng <br />";
-	          
+	           Zend_Debug::dump($googleModel->getStatus());
 	           $data = array('lat_fail' => 1);
 	           $where = $locationModel->getTable()->getDefaultAdapter()->quoteInto('id = ?', $location->id);
 	           $locationModel->getTable()->update($data, $where);   
 	        }
+	        sleep(1);
 	        ob_end_flush();
 	        flush();
 	    }
