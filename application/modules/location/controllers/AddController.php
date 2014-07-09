@@ -83,6 +83,45 @@ class Location_AddController extends Zend_Controller_Action
     			$serviceDue = strtotime('+1 month', time());
     			$scheduleModel->create($locationId, $serviceDue);
     			
+    			// Import google location data
+    			$googleModel = new Application_Model_GoogleMaps();
+    			$origin = '6811 Williams Hwy, Grants Pass, OR 97527';
+    			 
+    			$geoModel = new Geo_Model_Geo();
+    			
+    			$destination = $street .', ' . $city . ', ' . $state .', ' . $zip;
+    			$map = $googleModel->getDirections($origin, $destination);
+    			if($googleModel->getStatus()  == 'OK'){
+    			    $duration = $googleModel->getDuration();
+    			    $distance = $googleModel->getDistance();
+    			    $lat = $googleModel->getLat();
+    			    $lng = $googleModel->getLon();
+    			    $directions = $googleModel->getDrivingDirections();
+    			    
+    			    $html = '';
+    			    foreach($directions[0]['steps'] as $map) {
+    			        $html .= '<b>Distance: </b> ' .$map['distance']['text'].' <b>Duration:</b> '.$map['duration']['text'];
+    			        $html .= ' <b>Directions: </b> '.$map['html_instructions'].'<br />';
+    			    }
+
+    			    // save driving directions
+    			    $geoModel->create($locationId, $distance, $duration, $html);
+    			    
+    			    // update location
+    			    $locationModel->addLatLng($locationId, $lat, $lng);
+    			    
+    			// failed    
+    			} else {
+    			    $data = array('lat_fail' => 1);
+    			    $where = $locationModel->getTable()->getDefaultAdapter()->quoteInto('id = ?', $locationId);
+    			    $locationModel->getTable()->update($data, $where);
+    			}
+    			
+	        
+	        
+    			
+    			/** @todo import data from BLM */
+    			
     			$this->redirect('/owner/add/index/location_id/'.$locationId.'/well-log/'.$wellLog->id.'/msg/location-add');
     			
     		} else {

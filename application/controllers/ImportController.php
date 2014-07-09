@@ -120,6 +120,11 @@ class ImportController extends Zend_Controller_Action
 	    }
 	}
 	
+	public function plssAction()
+	{
+	    
+	}
+	
 	public function cliAction()
 	{
 		$this->_helper->layout()->disableLayout(); 
