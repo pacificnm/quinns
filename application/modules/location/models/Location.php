@@ -90,14 +90,16 @@ class Location_Model_Location
         return $rowSet;
     }
 
-    public function loadEmptyLat()
+    public function loadEmptyLat($limit = 10)
     {
         $select = $this->getTable()
         ->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
         ->setIntegrityCheck(false);
         
-        $select->where('lat = ?', 'NULL')->limit(10);
+        $select->where('lat IS NULL')
+            ->where('lat_fail != ?', 1)->limit($limit);
         
+                
         $rowSet = $this->getTable()->fetchAll($select);
         
         return $rowSet;

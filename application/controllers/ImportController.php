@@ -58,6 +58,68 @@ class ImportController extends Zend_Controller_Action
 		
 	}
 	
+	public function mapAction()
+	{
+	    $this->_helper->layout()->disableLayout();
+	    $this->_helper->viewRenderer->setNoRender(true);
+	    
+	    ini_set('max_execution_time', 0);
+	    ini_set('memory_limit','1600M');
+	    
+	    $locationModel = new Location_Model_Location();
+	    $locations = $locationModel->loadEmptyLat(10);
+	    
+	    $googleModel = new Application_Model_GoogleMaps();
+	    $origin = '6811 Williams Hwy, Grants Pass, OR 97527';
+	    
+	    $geoModel = new Geo_Model_Geo();
+	    
+	    foreach($locations as $location) {
+	        @ob_end_clean();
+	        ob_start();
+	        echo "Working on Location " . $location->street . ' ' . $location->city.'<br />';
+	        
+	        
+	        $destination = $location->street .', ' . $location->city . ', ' . $location->state .', ' . $location->zip;
+	        $map = $googleModel->getDirections($origin, $destination);
+	        
+	        
+	        if($googleModel->getStatus()  == 'OK'){
+	            
+	           $duration = $googleModel->getDuration();
+    		   $distance = $googleModel->getDistance();
+    		   $lat = $googleModel->getLat();
+    		   $lng = $googleModel->getLon();
+    		   $directions = $googleModel->getDrivingDirections();
+
+    		   $html = '';
+    		   foreach($directions[0]['steps'] as $map) {
+    		       $html .= '<b>Distance: </b> ' .$map['distance']['text'].' <b>Duration:</b> '.$map['duration']['text'];
+    		       $html .= ' <b>Directions: </b> '.$map['html_instructions'].'<br />';
+    		   }
+    		   
+    		   
+    		    // save driving directions
+    		    echo "Saved driving directions <br>";
+	            $geoModel->create($location->id, $distance, $duration, $html);
+	            
+	            // update location
+	            echo "Updated locaotion and added LAT and LNG<br />";
+	            $locationModel->addLatLng($location->id, $lat, $lng);
+	            
+	        // failed to find location using google mark it failed.    
+	        } else {
+	           echo "Failed to find lat and lng <br />";
+	          
+	           $data = array('lat_fail' => 1);
+	           $where = $locationModel->getTable()->getDefaultAdapter()->quoteInto('id = ?', $location->id);
+	           $locationModel->getTable()->update($data, $where);   
+	        }
+	        ob_end_flush();
+	        flush();
+	    }
+	}
+	
 	public function cliAction()
 	{
 		$this->_helper->layout()->disableLayout(); 
