@@ -183,7 +183,7 @@ class Well_Model_WellLog
 		$select = $this->getTable()->select(Zend_Db_Table::SELECT_WITH_FROM_PART)
 		->setIntegrityCheck(false);
 		
-		$select->where('street_of_well LIKE ?', $street.'%');
+		$select->where('street_of_well LIKE ?', '%'.$street.'%');
 		
 		$rowSet = $this->getTable()->fetchRow($select);
 		

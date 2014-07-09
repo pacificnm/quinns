@@ -39,13 +39,15 @@ class Report_Model_Pdf extends Zend_Pdf
 		$startLine = 712;
 		
 		// prepaired for
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-		$page->setFont($font, 11);
-		$page->drawText('Prepaired For:', 20, $startLine, 'UTF-8');
-		
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-		$page->setFont($font, 11);
-		$page->drawText($selectedSite->name, 100, $startLine, 'UTF-8');
+		if($selectedSite->name) {
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+    		$page->setFont($font, 11);
+    		$page->drawText('Prepaired For:', 20, $startLine, 'UTF-8');
+    		
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+    		$page->setFont($font, 11);
+    		$page->drawText($selectedSite->name, 100, $startLine, 'UTF-8');
+		}
 		
 		// date
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
@@ -66,25 +68,29 @@ class Report_Model_Pdf extends Zend_Pdf
 		$startLine-=18;
 		
 		// address
-		$page->drawText($selectedSite->street, 20, $startLine, 'UTF-8');
-		$startLine-=18;
-		$page->drawText($selectedSite->city . ' ' .$selectedSite->state.', ' .$selectedSite->zip  , 20, $startLine, 'UTF-8');
+		if($selectedSite->street) {
+    		$page->drawText($selectedSite->street, 20, $startLine, 'UTF-8');
+    		$startLine-=18;
+    		$page->drawText($selectedSite->city . ' ' .$selectedSite->state.', ' .$selectedSite->zip  , 20, $startLine, 'UTF-8');
+		}
 		
+		if($selectedSite->phone) {
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+    		$page->setFont($font, 11);
+    		$page->drawText('Phone:', 220, $startLine, 'UTF-8');
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+    		$page->setFont($font, 11);
+    		$page->drawText(preg_replace('/\s+?(\S+)?$/', '', substr( $selectedSite->phone, 0, 40)) , 260, $startLine, 'UTF-8');
+		}
 		
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-		$page->setFont($font, 11);
-		$page->drawText('Phone:', 220, $startLine, 'UTF-8');
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-		$page->setFont($font, 11);
-		$page->drawText(preg_replace('/\s+?(\S+)?$/', '', substr( $selectedSite->phone, 0, 40)) , 260, $startLine, 'UTF-8');
-		
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
-		$page->setFont($font, 11);
-		$page->drawText('Email:', 350, $startLine, 'UTF-8');
-		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
-		$page->setFont($font, 11);
-		$page->drawText($selectedSite->email, 386, $startLine, 'UTF-8');
-		
+		if($selectedSite->email) {
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA_BOLD);
+    		$page->setFont($font, 11);
+    		$page->drawText('Email:', 350, $startLine, 'UTF-8');
+    		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
+    		$page->setFont($font, 11);
+    		$page->drawText($selectedSite->email, 386, $startLine, 'UTF-8');
+		}
 		$startLine-=18;
 		
 		// draw line
@@ -101,7 +107,7 @@ class Report_Model_Pdf extends Zend_Pdf
 		$page->drawText('No.', 20, $startLine, 'UTF-8');
 		$page->drawText('PLSS', 40, $startLine, 'UTF-8');
 		$page->drawText('Address', 125, $startLine, 'UTF-8');
-		$page->drawText('Well Tag', 290, $startLine, 'UTF-8');
+		$page->drawText('Pump Tag', 290, $startLine, 'UTF-8');
 		$page->drawText('Depth', 350, $startLine, 'UTF-8');
 		$page->drawText('Level', 380, $startLine, 'UTF-8');
 		$page->drawText('Yield', 410, $startLine, 'UTF-8');
@@ -152,7 +158,7 @@ class Report_Model_Pdf extends Zend_Pdf
 		// footer
 		$font = Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA);
 		$page->setFont($font, 9);
-		$page->drawText('Page  '. $pageNum . ' ' . date("M d, Y", time()), 265, 18);
+		$page->drawText('Page  '. $pageNum . ' ' . date("m d, Y",$selectedSite->date), 265, 18);
 		$pdf->pages[] = $page;
 		
 		
