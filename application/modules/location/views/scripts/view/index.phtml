@@ -93,11 +93,9 @@
 					<a href="/service/add/index/id/<?php echo $this->location->id;?>" class="button middle" title="Add New Service"><span class="icon icon167"></span><span class="label">New Service</span></a>
 					<a href="/location/view/note/id/<?php echo $this->location->id;?>" class="button middle" title="Location Notes"><span class="icon icon137"></span><span class="label">Notes</span></a>
 					<a href="/location/view/map/id/<?php echo $this->location->id;?>" class="button middle" title="Location Map"><span class="icon icon197"></span><span class="label">Map</span></a>
-					<?php if($this->location->old_id > 0) {?>
-					   <a href="/location/view/old/id/<?php echo $this->location->old_id;?>" class="button middle" title="Referance" target="new"><span class="icon icon43"></span></a>
 					
-					<?php }?>
-					<a href="/location/view/report/id/<?php echo $this->location->id;?>" class="button right" title="Print Location Report"><span class="icon icon153"></span><span class="label">Print Report</span></a>
+					<a href="/location/view/report/id/<?php echo $this->location->id;?>" class="button middle" title="Print Location Report"><span class="icon icon153"></span><span class="label">Print</span></a>
+					<a href="/location/delete/index/location_id/<?php echo $this->location->id;?>" class="button right" title="Delete this location"><span class="icon icon58"></span></a>
 				</div>		
 		</div>
 	</div>

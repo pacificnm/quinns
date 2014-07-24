@@ -54,7 +54,7 @@ class Tank_Model_Tank
 	 * @param unknown $model
 	 * @param unknown $filtration
 	 */
-	public function edit($id,$size,$type,$model,$filtration)
+	public function edit($id,$size,$model, $type,$filtration)
 	{
 		$data = array(
 				'size' => $size,
@@ -62,6 +62,8 @@ class Tank_Model_Tank
 				'model' => $model,
 				'filtration' => $filtration
 				);
+		
+		
 		$where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $id);
 		
 		$this->getTable()->update($data, $where);

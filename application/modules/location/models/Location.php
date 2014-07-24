@@ -357,6 +357,18 @@ class Location_Model_Location
         return $rowSet;
     }
 
+    
+    public function delete($locationId)
+    {
+    	if($locationId < 1) {
+    		throw new Zend_Exception('Missing location id');
+    	}
+    	
+    	$where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $locationId);
+    	
+    	$this->getTable()->delete($where);
+    }
+    
     /**
      * Loads the Location Databas Table
      *

@@ -175,6 +175,7 @@ class Pump_Model_Pump
 				'static_level' => $staticLevel,
 				'status' => $status
 				);
+		
 		$where = $this->getTable()->getDefaultAdapter()->quoteInto('id = ?', $id);
 		
 		$this->getTable()->update($data, $where);
